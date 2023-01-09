@@ -21,9 +21,15 @@ const columns: GridColDef[] = [
     editable: false,
   },
   {
-    field: 'typeid',
+    field: 'typeId',
     headerName: 'Type',
-    width: 100,
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'stateId',
+    headerName: 'State',
+    width: 150,
     editable: false,
   },
   {
@@ -55,6 +61,8 @@ const ListOfIngredients = () => {
 
   const [arrData, setArrData] = useState<number[]>([])
 
+  console.log(computers)
+
   const FetchGetComputersList = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
       console.log(res)
@@ -78,7 +86,7 @@ const ListOfIngredients = () => {
 
 
   return (<>
-    <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute',  top: '30%', backgroundColor: '#4e4e4e' }}>
+    <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute', top: '30%', backgroundColor: '#4e4e4e' }}>
       <DataGrid
         components={{ Toolbar: GridToolbar }}
         sx={{ height: '100%', width: '100%', color: 'white' }}

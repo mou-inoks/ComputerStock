@@ -13,7 +13,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 export default function AccordionMenu() {
  return (
   <div>
-   <Accordion sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+   <Accordion defaultExpanded={true} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
     <AccordionSummary
      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
      aria-controls="panel1a-content"

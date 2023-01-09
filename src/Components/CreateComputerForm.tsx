@@ -3,52 +3,93 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Navbar from '../Components/Navbar'
+import Autocomplete from '@mui/material/Autocomplete'
 interface IValues {
   name: string,
-  type: IType | null , 
-  brand: string, 
-  processorid: number | null , 
-  ram: number | null, 
-  stateid: number | null , 
-  comment: string, 
-}
-
-interface InterfaceAliment {
-  id: number;
-  name: string;
-  typeId: string;
+  typeid: number | null,
+  brand: string,
+  processorid: number | null,
+  ram: number | null,
+  stateid: number | null,
+  comment: string,
 }
 
 interface IType {
-  id: number, 
-  type: string 
+  id: number,
+  type: string
+}
+
+interface IState {
+  id: number,
+  state: string
+}
+
+interface IProcessor {
+  id: number,
+  name: string,
+  niveau: string,
+  vitesse: string
 }
 
 
-const  CreateComputerForm = () => {
+const CreateComputerForm = () => {
 
-  const typeArr: IType[] = []
+  const [stateArr, setStateArr] = useState<IState[]>([])
+
+  const [typeArr, setTypeArr] = useState<IType[]>([])
+
+  const [processorArr, setProcessorArr] = useState<IProcessor[]>([])
+
+  const FetchFeedAllArrays = () => {
+    axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
+      console.log(res)
+      setStateArr(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('https://localhost:7107/api/ComputerStock/type').then(res => {
+      console.log(res)
+      setTypeArr(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('https://localhost:7107/api/ComputerStock/processors').then(res => {
+      console.log(res)
+      setProcessorArr(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  useEffect(() => {
+    FetchFeedAllArrays()
+  }, [])
+
+
 
   return (
     <div>
-      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '50px', position: 'absolute', left: '43%', top: '10%', color:'#bd5457' }} className='h1'>Create a computer</Typography>
+      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a computer</Typography>
       <Formik<IValues>
         initialValues={{
           name: '',
-          type: null, 
-          brand: '', 
-          processorid: null, 
-          ram: null, 
-          stateid: null, 
+          typeid: null,
+          brand: '',
+          processorid: null,
+          ram: null,
+          stateid: null,
           comment: ''
         }}
         onSubmit={(
           values: IValues,
           { setSubmitting }: FormikHelpers<IValues>
         ) => {
+
         }}
       >
-        {({ handleChange }) => {
+        {({values, handleChange, setFieldValue }) => {
           return <Form>
             <Box
               component="form"
@@ -61,61 +102,61 @@ const  CreateComputerForm = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '50%', top: '20%'}}
+                sx={{ position: 'absolute', left: '43%', top: '20%' }}
                 required
                 id="name"
                 label="Name"
               />
-              <TextField
-                onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '30%'}}
-                required
-                id="name"
-                label="Type"
+              <Autocomplete
+                onChange={(e, v) => values.typeid =  v?.id!}
+                getOptionLabel={(options) => options.type}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '20%'  }}
+                options={typeArr}
+                renderInput={(params) => <TextField {...params} label="Type" />}
               />
               <TextField
                 onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '40%'}}
+                name='brand'
+                sx={{ position: 'absolute', left: '43%', top: '30%' }}
                 required
-                id="name"
+                id="brand"
                 label="Brand"
               />
-              <TextField
-                onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '50%'}}
-                required
-                id="name"
-                label="Processor"
+              <Autocomplete
+                onChange={(e, v) => values.processorid =  v?.id!}
+                getOptionLabel={(options) => options.name}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '30%'  }}
+                options={processorArr}
+                renderInput={(params) => <TextField {...params} label="Processor" />}
               />
               <TextField
                 onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '60%'}}
+                name='ram'
+                sx={{ position: 'absolute', left: '43%', top: '40%' }}
                 required
-                id="name"
+                id="ram"
                 label="Ram"
               />
-              <TextField
-                onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '70%'}}
-                required
-                id="name"
-                label="State"
+              <Autocomplete
+                onChange={(e, v) => values.stateid =  v?.id!}
+                getOptionLabel={(options) => options.state}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '40%'  }}
+                options={stateArr}
+                renderInput={(params) => <TextField {...params} label="State" />}
               />
               <TextField
                 onChange={handleChange}
-                name='name'
-                sx={{ position: 'absolute', left: '50%', top: '80%'}}
+                name='comment'
+                sx={{ position: 'absolute', left: '50%', top: '50%' }}
                 required
-                id="name"
+                multiline
+                rows={5}
+                maxRows={5}
+                id="comment"
                 label="Comment"
               />
 
-              <Button sx={{backgroundColor:'#bd5457', position:'absolute', left:'54%',top: '90%'}}variant='contained'>Add</Button>
+              <Button sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%' }} variant='contained'>Add</Button>
             </Box>
 
           </Form>
