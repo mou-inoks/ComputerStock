@@ -6,3 +6,9 @@
 body {
   background-color: #3d3d3d;
 }
+
+#accordion{
+  margin-top: 70px;
+  height: 83vh;
+  width: 18%;
+}

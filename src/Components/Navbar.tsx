@@ -105,7 +105,6 @@ export default function Navbar() {
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
-      sx={{backgroundColor: 'red'}}
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -157,7 +156,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1, position:'static', float:'right', width: '145vh'}}>
-      <AppBar position="static" >
+      <AppBar sx={{backgroundColor:'#4e4e4e'}} position="static" >
         <Toolbar>
           <IconButton
             size="large"
