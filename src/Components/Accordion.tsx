@@ -7,6 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Link } from 'react-router-dom';
 import { ListItemButton } from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 export default function AccordionMenu() {
  return (
@@ -21,7 +23,12 @@ export default function AccordionMenu() {
     </AccordionSummary>
     <AccordionDetails>
      <ListItemButton sx={{ textAlign: 'center' }}>
-      <Link style={{textDecoration: 'none', color: 'white'}} to='#'>Hello</Link>
+      <AddBoxIcon sx={{color: '#bd5457', paddingRight: 1}}/>
+      <Link style={{textDecoration: 'none', color: 'white'}} to='/create-computer'> New computer</Link>
+     </ListItemButton>
+     <ListItemButton sx={{ textAlign: 'center'  }}>
+      <ListAltIcon sx={{color: '#bd5457', paddingRight: 1}} /> 
+      <Link style={{textDecoration: 'none', color: 'white'}} to='/list-computer'> List computer</Link>
      </ListItemButton>
     </AccordionDetails>
    </Accordion>

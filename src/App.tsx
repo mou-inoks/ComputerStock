@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css'
-import Navbar from './Components/Navbar';
-import AccordionMenu from './Components/Accordion';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './Pages/MainPage';
-import CreateComputer from './Pages/CreateComputer';
+import ListComputerScreen from './Pages/ListComputerScreen';
+import CreateComputerScreen from './Pages/CreateComputerScreen';
+
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<MainPage/>}/>
-        <Route path='/create-computer' element={<CreateComputer/>}/>
+        <Route path='/' element={<ListComputerScreen/>}/>
+        <Route path='/create-computer' element={<CreateComputerScreen/>}/>
+        <Route path='/list-computer' element={<ListComputerScreen/>}/>
       </Routes> 
     </div>
   );

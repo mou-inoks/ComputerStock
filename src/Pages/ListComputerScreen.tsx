@@ -1,16 +1,23 @@
 import React from 'react'
 import AccordionMenu from '../Components/Accordion'
+import ListComputer from '../Components/ListComputer'
 import Navbar from '../Components/Navbar'
 
-export default function MainPage() {
+const ListComputerScreen = () => {
  return (<>
-  <header className="App-header">
+ <div>
+ <header className="App-header">
    <Navbar />
    <img src={require('../imgs/logo.png')} />
   </header>
   <div id='accordion'>
    <AccordionMenu />
   </div>
+  <ListComputer />
+ </div>
+ 
  </>
  )
 }
+
+export default ListComputerScreen
