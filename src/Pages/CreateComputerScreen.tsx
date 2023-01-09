@@ -1,8 +1,9 @@
 import React from 'react'
 import AccordionMenu from '../Components/Accordion'
+import CreateComputerForm from '../Components/CreateComputerForm'
 import Navbar from '../Components/Navbar'
 
-export default function CreateComputer() {
+export default function CreateComputerScreen() {
   return (
     <div>
       <header className="App-header">
@@ -12,7 +13,7 @@ export default function CreateComputer() {
       <div id='accordion'>
         <AccordionMenu />
       </div>
-      <CreateComputer/>
+      <CreateComputerForm/>
     </div>
 
   )

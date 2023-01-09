@@ -25,13 +25,13 @@ interface IType {
 }
 
 
-const  CreateComputer = () => {
+const  CreateComputerForm = () => {
 
   const typeArr: IType[] = []
 
   return (
     <div>
-      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Create a computer</Typography>
+      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '50px', position: 'absolute', left: '43%', top: '10%', color:'#bd5457' }} className='h1'>Create a computer</Typography>
       <Formik<IValues>
         initialValues={{
           name: '',
@@ -61,14 +61,63 @@ const  CreateComputer = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '43%', top: '20%' }}
+                sx={{ position: 'absolute', left: '50%', top: '20%'}}
                 required
                 id="name"
-                label="Nom"
+                label="Name"
               />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '30%'}}
+                required
+                id="name"
+                label="Type"
+              />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '40%'}}
+                required
+                id="name"
+                label="Brand"
+              />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '50%'}}
+                required
+                id="name"
+                label="Processor"
+              />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '60%'}}
+                required
+                id="name"
+                label="Ram"
+              />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '70%'}}
+                required
+                id="name"
+                label="State"
+              />
+              <TextField
+                onChange={handleChange}
+                name='name'
+                sx={{ position: 'absolute', left: '50%', top: '80%'}}
+                required
+                id="name"
+                label="Comment"
+              />
+
+              <Button sx={{backgroundColor:'#bd5457', position:'absolute', left:'54%',top: '90%'}}variant='contained'>Add</Button>
             </Box>
 
-            <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Add</Button>
           </Form>
         }}
       </Formik>
@@ -76,4 +125,4 @@ const  CreateComputer = () => {
   )
 }
 
-export default CreateComputer
+export default CreateComputerForm

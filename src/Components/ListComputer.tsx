@@ -78,7 +78,7 @@ const ListOfIngredients = () => {
 
 
   return (<>
-    <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'absolute', left: '40%', top: '30%' }}>
+    <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute',  top: '30%', backgroundColor: '#4e4e4e' }}>
       <DataGrid
         components={{ Toolbar: GridToolbar }}
         sx={{ height: '100%', width: '100%', color: 'white' }}
@@ -98,7 +98,7 @@ const ListOfIngredients = () => {
     </Box>
 
     <Button
-      sx={{ position: 'absolute', top: '70%', left: '65%', backgroundColor: '#bd5457' }}
+      sx={{ position: 'absolute', top: '70%', left: '60%', backgroundColor: '#bd5457' }}
       variant="contained"
       onClick={() => {
         arrData.map(async (e) => {
@@ -112,7 +112,7 @@ const ListOfIngredients = () => {
       Supprimer
     </Button>
 
-    <Button sx={{ position: 'absolute', top: '70%', left: '73%', backgroundColor: '#bd5457' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-computer'}>Ajouter</Link></Button>
+    <Button sx={{ position: 'absolute', top: '70%', left: '67%', backgroundColor: '#bd5457' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-computer'}>Ajouter</Link></Button>
   </>
 
   );
