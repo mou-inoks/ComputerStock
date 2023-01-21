@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -86,43 +86,52 @@ const ListOfIngredients = () => {
 
 
   return (<>
-    <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute', top: '30%', backgroundColor: '#4e4e4e' }}>
-      <DataGrid
-        components={{ Toolbar: GridToolbar }}
-        sx={{ height: '100%', width: '100%', color: 'white' }}
-        rows={computers}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        onSelectionModelChange={(d) => {
-          if (d.length > 0)
-            setDisabled(false)
-          d.map((e) => arrData.push(Number(e)))
-          if (d.length <= 0)
-            setDisabled(true)
-        }}
-        checkboxSelection
-      />
-    </Box>
+    <Grid container spacing={2} >
 
-    <Button
-      sx={{ position: 'absolute', top: '70%', left: '60%', backgroundColor: '#bd5457' }}
-      variant="contained"
-      onClick={() => {
-        arrData.map(async (e) => {
-          console.log('https://localhost:7185/api/Aliments/Repas/' + e)
-          FetchDeleteComputer(e)
+      <Grid item xs={12}>
+        <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute', top: '30%', backgroundColor: '#4e4e4e' }}>
+          <DataGrid
+            components={{ Toolbar: GridToolbar }}
+            sx={{ height: '100%', width: '100%', color: 'white' }}
+            rows={computers}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            onSelectionModelChange={(d) => {
+              if (d.length > 0)
+                setDisabled(false)
+              d.map((e) => arrData.push(Number(e)))
+              if (d.length <= 0)
+                setDisabled(true)
+            }}
+            checkboxSelection
+          />
+        </Box>
+      </Grid>
 
-        })
-      }}
-      disabled={isDisabled}
-    >
-      Supprimer
-    </Button>
+      <Grid item xs={5} />
 
-    <Button sx={{ position: 'absolute', top: '70%', left: '67%', backgroundColor: '#bd5457' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-computer'}>Ajouter</Link></Button>
+      <Grid item xs={2}>
+        <Button
+          sx={{ position: 'absolute', top: '70%', left: '60%', backgroundColor: '#bd5457' }}
+          variant="contained"
+          onClick={() => {
+            arrData.map(async (e) => {
+              console.log('https://localhost:7185/api/Aliments/Repas/' + e)
+              FetchDeleteComputer(e)
+
+            })
+          }}
+          disabled={isDisabled}
+        >
+          Supprimer
+        </Button>
+      </Grid>
+      <Grid item xs={2}>
+        <Button sx={{ position: 'absolute', top: '70%', left: '67%', backgroundColor: '#bd5457' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-computer'}>Ajouter</Link></Button>
+      </Grid>
+    </Grid>
   </>
-
   );
 }
 
