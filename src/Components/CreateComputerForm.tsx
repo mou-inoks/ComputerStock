@@ -80,7 +80,7 @@ const CreateComputerForm = () => {
 
         }}
       >
-        {({ values, handleChange, setFieldValue }) => {
+        {({ values, handleChange }) => {
           return <Form>
             <Box
               component="form"
