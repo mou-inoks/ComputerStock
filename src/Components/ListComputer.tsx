@@ -16,7 +16,7 @@ const ListOfIngredients = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
       setComputers(res.data)
     })
-  }, [])
+  }, [computers])
   return (<>
     <table className='table'>
       <tbody>
@@ -31,14 +31,17 @@ const ListOfIngredients = () => {
           <th className='header__item'>Comment</th>
         </tr>
         <tr>
-          {computers.map((computer) => {
+          {computers.map((computer, index) => {
             return (
               <>
                 <div className='table-row'>
                   <td className='table-data'>
                     <a href="create-computer"><AddIcon/></a>
-                    <a href=""><EditIcon/></a>
-                    <a href=""><DeleteIcon/></a>
+                    <a><EditIcon/></a>
+                    <a onClick={() => {
+                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + computers[index].id).then(() => {
+                      })
+                    }}><DeleteIcon/></a>
                   </td>
                   <td className='table-data'>{computer.name}</td>
                   <td className='table-data'>{computer.type?.type}</td>
