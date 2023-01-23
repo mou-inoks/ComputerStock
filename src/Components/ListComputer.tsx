@@ -1,61 +1,12 @@
+import { Grid, GridColumn as Column  } from '@progress/kendo-react-grid';
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-import { Button, Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Computer, FetchGetAllComputers } from './ComputerQuerys'
 
-
-const columns: GridColDef[] = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 100,
-    editable: false,
-  },
-  {
-    field: 'name',
-    headerName: 'Nom',
-    width: 100,
-    editable: false,
-  },
-  {
-    field: 'type',
-    headerName: 'Type',
-    width: 150,
-    editable: false,
-  },
-  {
-    field: 'stateId',
-    headerName: 'State',
-    width: 150,
-    editable: false,
-  },
-  {
-    field: 'brand',
-    headerName: 'Brand',
-    width: 100,
-    editable: false,
-  },
-  {
-    field: 'ram',
-    headerName: 'Ram',
-    width: 50,
-    editable: false,
-  },
-  {
-    field: 'comment',
-    headerName: 'Comment',
-    width: 250,
-    editable: false,
-  },
-
-];
 
 const ListOfIngredients = () => {
 
-  const [computers, setComputers] = useState([])
+  const [computers, setComputers] = useState<Array<Computer>>([])
 
   const [isDisabled, setDisabled] = useState(true)
 
@@ -63,73 +14,23 @@ const ListOfIngredients = () => {
 
   console.log(computers)
 
-  const FetchGetComputersList = () => {
-    axios.get('https://localhost:7107/api/ComputerStock').then(res => {
-      console.log(res)
-      setComputers(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-  }
-
-  const FetchDeleteComputer = (id: number) => {
-    fetch('https://localhost:7185/api/Aliments/' + id, {
-      method: 'DELETE'
-    }).then(r => {
-      FetchGetComputersList()
-    })
-  }
-
   useEffect(() => {
-    FetchGetComputersList()
+    FetchGetAllComputers(computers)
   }, [])
 
-
+console.log(computers)
   return (<>
-    <Grid container spacing={2} >
-
-      <Grid item xs={12}>
-        <Box sx={{ height: 400, width: '40%', left: '35%', position: 'absolute', top: '30%', backgroundColor: '#4e4e4e' }}>
-          <DataGrid
-            components={{ Toolbar: GridToolbar }}
-            sx={{ height: '100%', width: '100%', color: 'white' }}
-            rows={computers}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            onSelectionModelChange={(d) => {
-              if (d.length > 0)
-                setDisabled(false)
-              d.map((e) => arrData.push(Number(e)))
-              if (d.length <= 0)
-                setDisabled(true)
-            }}
-            checkboxSelection
-          />
-        </Box>
-      </Grid>
-
-      <Grid item xs={5} />
-
-      <Grid item xs={2}>
-        <Button
-          sx={{ position: 'absolute', top: '70%', left: '60%', backgroundColor: '#bd5457' }}
-          variant="contained"
-          onClick={() => {
-            arrData.map(async (e) => {
-              console.log('https://localhost:7185/api/Aliments/Repas/' + e)
-              FetchDeleteComputer(e)
-
-            })
-          }}
-          disabled={isDisabled}
-        >
-          Supprimer
-        </Button>
-      </Grid>
-      <Grid item xs={2}>
-        <Button sx={{ position: 'absolute', top: '70%', left: '67%', backgroundColor: '#bd5457' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-computer'}>Ajouter</Link></Button>
-      </Grid>
+    <Grid
+    data={computers}
+    >
+      <Column field='id' title='Id' width={100} />
+      <Column field='name' title='Id' width={100} />
+      <Column field='type.type' title='Type' width={100} />
+      <Column field='brand' title='Brand' width={100} />
+      <Column field='processor.name' title='Processor' width={100} />
+      <Column field='ram' title='Ram' width={100} />
+      <Column field='state.state' title='State' width={100} />
+      <Column field='comment' title='Comment' width={100} />
     </Grid>
   </>
   );

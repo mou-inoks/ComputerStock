@@ -4,41 +4,16 @@ import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Navbar from '../Components/Navbar'
 import Autocomplete from '@mui/material/Autocomplete'
-interface IValues {
-  name: string,
-  typeid: number | null,
-  brand: string,
-  processorid: number | null,
-  ram: number | null,
-  stateid: number | null,
-  comment: string,
-}
-
-interface IType {
-  id: number,
-  type: string
-}
-
-interface IState {
-  id: number,
-  state: string
-}
-
-interface IProcessor {
-  id: number,
-  name: string,
-  niveau: string,
-  vitesse: string
-}
+import { Computer, Processor, State, ComputerType } from './ComputerQuerys'
 
 
 const CreateComputerForm = () => {
 
-  const [stateArr, setStateArr] = useState<IState[]>([])
+  const [stateArr, setStateArr] = useState<State[]>([])
 
-  const [typeArr, setTypeArr] = useState<IType[]>([])
+  const [typeArr, setTypeArr] = useState<ComputerType[]>([])
 
-  const [processorArr, setProcessorArr] = useState<IProcessor[]>([])
+  const [processorArr, setProcessorArr] = useState<Processor[]>([])
 
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
@@ -72,24 +47,25 @@ const CreateComputerForm = () => {
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a computer</Typography>
-      <Formik<IValues>
+      <Formik<Computer>
         initialValues={{
+          id: 0,
           name: '',
-          typeid: null,
+          type: null,
           brand: '',
-          processorid: null,
-          ram: null,
-          stateid: null,
+          processor: null,
+          ram: 0,
+          state: null,
           comment: ''
         }}
         onSubmit={(
-          values: IValues,
-          { setSubmitting }: FormikHelpers<IValues>
+          values: Computer,
+          { setSubmitting }: FormikHelpers<Computer>
         ) => {
 
         }}
       >
-        {({values, handleChange, setFieldValue }) => {
+        {({ values, handleChange, setFieldValue }) => {
           return <Form>
             <Box
               component="form"
@@ -102,52 +78,52 @@ const CreateComputerForm = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '43%', top: '20%' }}
+                sx={{ position: 'absolute', left: '43%', top: '20%', backgroundColor: '#3A3A3A' }}
                 required
                 id="name"
                 label="Name"
               />
               <Autocomplete
-                onChange={(e, v) => values.typeid =  v?.id!}
+                onChange={(e, v) => values.type = v}
                 getOptionLabel={(options) => options.type}
-                sx={{ width: 240, position: 'absolute', left: '58%', top: '20%'  }}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '20%' }}
                 options={typeArr}
-                renderInput={(params) => <TextField {...params} label="Type" />}
+                renderInput={(params) => <TextField {...params} label="Type" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
                 name='brand'
-                sx={{ position: 'absolute', left: '43%', top: '30%' }}
+                sx={{ position: 'absolute', left: '43%', top: '30%', backgroundColor: '#3A3A3A' }}
                 required
                 id="brand"
                 label="Brand"
               />
               <Autocomplete
-                onChange={(e, v) => values.processorid =  v?.id!}
+                onChange={(e, v) => values.processor = v}
                 getOptionLabel={(options) => options.name}
-                sx={{ width: 240, position: 'absolute', left: '58%', top: '30%'  }}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '30%' }}
                 options={processorArr}
-                renderInput={(params) => <TextField {...params} label="Processor" />}
+                renderInput={(params) => <TextField {...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
                 name='ram'
-                sx={{ position: 'absolute', left: '43%', top: '40%' }}
+                sx={{ position: 'absolute', left: '43%', top: '40%', backgroundColor: '#3A3A3A' }}
                 required
                 id="ram"
                 label="Ram"
               />
               <Autocomplete
-                onChange={(e, v) => values.stateid =  v?.id!}
+                onChange={(e, v) => values.state = v}
                 getOptionLabel={(options) => options.state}
-                sx={{ width: 240, position: 'absolute', left: '58%', top: '40%'  }}
+                sx={{ width: 240, position: 'absolute', left: '58%', top: '40%' }}
                 options={stateArr}
-                renderInput={(params) => <TextField {...params} label="State" />}
+                renderInput={(params) => <TextField {...params} label="State" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
                 name='comment'
-                sx={{ position: 'absolute', left: '50%', top: '50%' }}
+                sx={{ position: 'absolute', left: '50%', top: '50%', backgroundColor: '#3A3A3A' }}
                 required
                 multiline
                 rows={5}
@@ -155,8 +131,7 @@ const CreateComputerForm = () => {
                 id="comment"
                 label="Comment"
               />
-
-              <Button sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%' }} variant='contained'>Add</Button>
+              <Button sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
             </Box>
 
           </Form>

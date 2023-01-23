@@ -11,6 +11,8 @@ function App() {
         <Route path='/' element={<ListComputerScreen/>}/>
         <Route path='/create-computer' element={<CreateComputerScreen/>}/>
         <Route path='/list-computer' element={<ListComputerScreen/>}/>
+        <Route path='/list-users' element={<ListComputerScreen/>}/>
+        <Route path='/create-users' element={<ListComputerScreen/>}/>
       </Routes> 
     </div>
   );
