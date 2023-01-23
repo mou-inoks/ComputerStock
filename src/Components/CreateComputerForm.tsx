@@ -131,7 +131,7 @@ const CreateComputerForm = () => {
                 id="comment"
                 label="Comment"
               />
-              <Button sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+              <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
             </Box>
 
           </Form>
