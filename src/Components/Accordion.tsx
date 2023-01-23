@@ -22,16 +22,125 @@ export default function AccordionMenu() {
      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Computer</Typography>
     </AccordionSummary>
     <AccordionDetails>
+
      <ListItemButton sx={{ textAlign: 'center' }}>
-      <AddBoxIcon sx={{color: '#bd5457', paddingRight: 1}}/>
-      <Link style={{textDecoration: 'none', color: 'white'}} to='/create-computer'> New computer</Link>
+      <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New computer</Link>
      </ListItemButton>
-     <ListItemButton sx={{ textAlign: 'center'  }}>
-      <ListAltIcon sx={{color: '#bd5457', paddingRight: 1}} /> 
-      <Link style={{textDecoration: 'none', color: 'white'}} to='/list-computer'> List computer</Link>
+
+     <ListItemButton sx={{ textAlign: 'center' }}>
+      <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List computers</Link>
      </ListItemButton>
+
+    </AccordionDetails>
+
+
+
+
+
+
+    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+     <AccordionSummary
+      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
+      aria-controls="panel1a-content"
+      id="panel1a-header"
+     >
+      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Processors</Typography>
+     </AccordionSummary>
+     <AccordionDetails>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New Processor</Link>
+      </ListItemButton>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List Processors</Link>
+      </ListItemButton>
+
+     </AccordionDetails>
+    </Accordion>
+
+
+    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+     <AccordionSummary
+      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
+      aria-controls="panel1a-content"
+      id="panel1a-header"
+     >
+      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> State</Typography>
+     </AccordionSummary>
+     <AccordionDetails>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New computer state</Link>
+      </ListItemButton>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List states </Link>
+      </ListItemButton>
+
+     </AccordionDetails>
+    </Accordion>
+
+
+
+    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+     <AccordionSummary
+      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
+      aria-controls="panel1a-content"
+      id="panel1a-header"
+     >
+      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} />Type</Typography>
+     </AccordionSummary>
+     <AccordionDetails>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New computer type</Link>
+      </ListItemButton>
+
+      <ListItemButton sx={{ textAlign: 'center' }}>
+       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List computer types </Link>
+      </ListItemButton>
+
+     </AccordionDetails>
+    </Accordion>
+
+
+
+   </Accordion>
+
+
+   <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+    <AccordionSummary
+     expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
+     aria-controls="panel1a-content"
+     id="panel1a-header"
+    >
+     <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Users</Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+
+     <ListItemButton sx={{ textAlign: 'center' }}>
+      <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New User </Link>
+     </ListItemButton>
+
+     <ListItemButton sx={{ textAlign: 'center' }}>
+      <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List Users</Link>
+     </ListItemButton>
+
     </AccordionDetails>
    </Accordion>
+
+
   </div>
  );
 }

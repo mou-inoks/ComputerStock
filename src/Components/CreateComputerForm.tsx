@@ -43,13 +43,11 @@ const CreateComputerForm = () => {
   }, [])
 
 
-
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a computer</Typography>
       <Formik<Computer>
         initialValues={{
-          id: 0,
           name: '',
           type: null,
           brand: '',
@@ -62,6 +60,23 @@ const CreateComputerForm = () => {
           values: Computer,
           { setSubmitting }: FormikHelpers<Computer>
         ) => {
+          console.log(values)
+          axios.post('https://localhost:7107/api/ComputerStock', {
+            name: values.name,
+            type: values.type,
+            brand: values.brand,
+            processor: values.processor,
+            ram: values.ram,
+            state: values.state,
+            comment: values.comment
+          })
+            .then(function (response) {
+              setSubmitting(true)
+              console.log(response)
+            })
+            .catch(function (error) {
+              console.log(error)
+            });
 
         }}
       >
@@ -84,11 +99,14 @@ const CreateComputerForm = () => {
                 label="Name"
               />
               <Autocomplete
-                onChange={(e, v) => values.type = v}
+                onChange={(e, v) => {
+                  values.type = v
+                  console.log("type", v)
+                }}
                 getOptionLabel={(options) => options.type}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '20%' }}
                 options={typeArr}
-                renderInput={(params) => <TextField {...params} label="Type" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField name='type' {...params} label="Type" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
@@ -99,11 +117,14 @@ const CreateComputerForm = () => {
                 label="Brand"
               />
               <Autocomplete
-                onChange={(e, v) => values.processor = v}
+                onChange={(e, v) => {
+                  values.processor = v
+                  console.log("processor", v)
+                }}
                 getOptionLabel={(options) => options.name}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '30%' }}
                 options={processorArr}
-                renderInput={(params) => <TextField {...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField name='processor'{...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
@@ -114,11 +135,14 @@ const CreateComputerForm = () => {
                 label="Ram"
               />
               <Autocomplete
-                onChange={(e, v) => values.state = v}
+                onChange={(e, v) => {
+                  values.state = v
+                  console.log("state", v)
+                }}
                 getOptionLabel={(options) => options.state}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '40%' }}
                 options={stateArr}
-                renderInput={(params) => <TextField {...params} label="State" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField {...params} name='state' label="State" sx={{ backgroundColor: '#3A3A3A' }} />}
               />
               <TextField
                 onChange={handleChange}
@@ -131,9 +155,9 @@ const CreateComputerForm = () => {
                 id="comment"
                 label="Comment"
               />
-              <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
-            </Box>
 
+            </Box>
+            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
       </Formik>

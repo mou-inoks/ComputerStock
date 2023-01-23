@@ -19,7 +19,6 @@ export interface State{
 
 
 export interface Computer {
- id: number, 
  name: string, 
  type: ComputerType | null, 
  brand: string, 
