@@ -21,7 +21,7 @@ const columns: GridColDef[] = [
     editable: false,
   },
   {
-    field: 'typeId',
+    field: 'type',
     headerName: 'Type',
     width: 150,
     editable: false,
