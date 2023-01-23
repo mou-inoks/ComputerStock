@@ -12,11 +12,15 @@ const ListOfIngredients = () => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
 
-  useEffect(() => {
+  const GetAllComputers = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
       setComputers(res.data)
     })
-  }, [computers])
+  }
+
+  useEffect(() => {
+    GetAllComputers()
+  }, [])
   return (<>
     <table className='table'>
       <tbody>
@@ -36,12 +40,13 @@ const ListOfIngredients = () => {
               <>
                 <div className='table-row'>
                   <td className='table-data'>
-                    <a href="create-computer"><AddIcon/></a>
-                    <a><EditIcon/></a>
+                    <a href="create-computer"><AddIcon /></a>
+                    <a><EditIcon /></a>
                     <a onClick={() => {
                       axios.delete('https://localhost:7107/api/ComputerStock/ ' + computers[index].id).then(() => {
+                        GetAllComputers()
                       })
-                    }}><DeleteIcon/></a>
+                    }}><DeleteIcon /></a>
                   </td>
                   <td className='table-data'>{computer.name}</td>
                   <td className='table-data'>{computer.type?.type}</td>
