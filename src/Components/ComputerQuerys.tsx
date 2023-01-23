@@ -30,13 +30,3 @@ export interface Computer {
 }
 
 
-
-export const FetchGetAllComputers = async (table: Array<Computer>) => {
- const data = await axios.get<Array<Computer>>('https://localhost:7107/api/ComputerStock').then(res => {
-  console.log(res.data)
-  table = res.data
- })
-
- return table;
-}
-
