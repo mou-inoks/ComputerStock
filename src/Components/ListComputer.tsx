@@ -5,12 +5,18 @@ import { Computer } from './ComputerQuerys'
 import '../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
-
+import { Link } from 'react-router-dom';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import EditComputerForm from './EditComputerForm';
 
 const ListOfIngredients = () => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
+  const [open, setOpen] = React.useState(false);
+
 
   const GetAllComputers = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
@@ -18,14 +24,40 @@ const ListOfIngredients = () => {
     })
   }
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     GetAllComputers()
   }, [])
+
+  const modalStyle = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
+
   return (<>
     <table className='table'>
       <tbody>
         <tr className='table-header'>
-          <th className='header__item'>Action</th>
+          <th className='header__item'>
+            <a href='create-computer'><AddCircleIcon /></a>
+            Action
+          </th>
           <th className='header__item'>Name</th>
           <th className='header__item'>Type</th>
           <th className='header__item'>Brand</th>
@@ -40,13 +72,34 @@ const ListOfIngredients = () => {
               <>
                 <div className='table-row'>
                   <td className='table-data'>
-                    <a href="create-computer"><AddIcon /></a>
-                    <a><EditIcon /></a>
-                    <a onClick={() => {
+                    <button className='actions' onClick={handleOpen}>
+                      <EditIcon />
+                    </button>
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="parent-modal-title"
+                      aria-describedby="parent-modal-description"
+                    >
+                      <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
+                        <h1>Edit {computers[index].name}</h1>
+                        <EditComputerForm
+                          id={computers[index].id}
+                          name={computers[index].name}
+                          state={computers[index].state}
+                          brand={computers[index].brand}
+                          type={computers[index].type}
+                          processor={computers[index].processor}
+                          ram={computers[index].ram}
+                          comment={computers[index].comment}
+                        />
+                      </Box>
+                    </Modal>
+                    <button className='actions' onClick={() => {
                       axios.delete('https://localhost:7107/api/ComputerStock/ ' + computers[index].id).then(() => {
                         GetAllComputers()
                       })
-                    }}><DeleteIcon /></a>
+                    }}><DeleteIcon /></button>
                   </td>
                   <td className='table-data'>{computer.name}</td>
                   <td className='table-data'>{computer.type?.type}</td>

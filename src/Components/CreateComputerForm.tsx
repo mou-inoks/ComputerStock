@@ -1,8 +1,7 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
-import Navbar from '../Components/Navbar'
 import Autocomplete from '@mui/material/Autocomplete'
 import { Computer, Processor, State, ComputerType } from './ComputerQuerys'
 
@@ -72,6 +71,7 @@ const CreateComputerForm = () => {
             comment: values.comment
           })
             .then(function (response) {
+              alert('A new computer as been added sucessfully ')
               setSubmitting(true)
               console.log(response)
             })
