@@ -3,7 +3,6 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import ListComputerScreen from './Pages/ListComputerScreen';
 import CreateComputerScreen from './Pages/CreateComputerScreen';
-import EditComputerScreen from './Pages/EditComputerScreen'
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
         <Route path='/list-computer' element={<ListComputerScreen/>}/>
         <Route path='/list-users' element={<ListComputerScreen/>}/>
         <Route path='/create-users' element={<ListComputerScreen/>}/>
-        <Route path='/edit-computer/' element={<EditComputerScreen/>}/>
       </Routes> 
     </div>
   );
