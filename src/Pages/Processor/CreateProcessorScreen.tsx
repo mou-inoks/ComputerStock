@@ -2,6 +2,7 @@ import React from 'react'
 import AccordionMenu from '../../Components/Accordion'
 import CreateComputerForm from '../../Components/Computers/CreateComputerForm'
 import Navbar from '../../Components/Navbar'
+import CreateProcessorForm from '../../Components/Processors/CreateProcessorForm'
 
 export default function CreateProcessorScreen() {
   return (
@@ -13,6 +14,7 @@ export default function CreateProcessorScreen() {
       <div id='accordion'>
         <AccordionMenu />
       </div>
+      <CreateProcessorForm />
     </div>
 
   )
