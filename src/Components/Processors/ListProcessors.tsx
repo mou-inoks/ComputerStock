@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Computer } from '../Computers/ComputerQuerys'
+import { Computer, Processor } from '../Computers/ComputerQuerys'
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,33 +9,34 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import EditComputerForm from '../Computers/EditComputerForm';
+import EditProcessorForm from './EditProcessorForm';
 
 const ListProcessors = () => {
 
-  const [computers, setComputers] = useState<Array<Computer>>([])
+  const [processors, setProcessors] = useState<Array<Processor>>([])
 
   const [open, setOpen] = useState(false);
   
-  const [tempComputer, setTempComputer] = useState<Computer>();
+  const [tempProcessors, setTempProcessors] = useState<Processor>();
 
-  const GetAllComputers = () => {
+  const GetAllProcessors = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
-      setComputers(res.data)
+     setProcessors(res.data)
     })
   }
 
-  const handleOpen = (v: Computer) => {
-    setTempComputer(v)
+  const handleOpen = (v: Processor) => {
+   setTempProcessors(v)
     setOpen(true);
 
   };
   const handleClose = () => {
     setOpen(false);
-    GetAllComputers()
+    GetAllProcessors()
   };
 
   useEffect(() => {
-    GetAllComputers()
+   GetAllProcessors()
   }, [])
 
   const modalStyle = {
@@ -62,20 +63,16 @@ const ListProcessors = () => {
             Action
           </th>
           <th className='header__item'>Name</th>
-          <th className='header__item'>Type</th>
-          <th className='header__item'>Brand</th>
-          <th className='header__item'>Processor</th>
-          <th className='header__item'>Ram</th>
-          <th className='header__item'>State</th>
-          <th className='header__item'>Comment</th>
+          <th className='header__item'>Speed</th>
+          <th className='header__item'>Level</th>
         </tr>
         <tr>
-          {computers.map((computer) => {
+          {processors.map((processor) => {
             return (
               <>
                 <div className='table-row'>
                   <td className='table-data'>
-                    <button className='actions' onClick={() => handleOpen(computer)}>
+                    <button className='actions' onClick={() => handleOpen(processor)}>
                       <EditIcon />
                     </button>
                     <Modal
@@ -85,32 +82,24 @@ const ListProcessors = () => {
                       aria-describedby="parent-modal-description"
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
-                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputer?.name}</h1>
-                        <EditComputerForm
-                          id={tempComputer?.id!}
-                          name={tempComputer?.name!}
-                          state={tempComputer?.state!}
-                          brand={tempComputer?.brand!}
-                          type={tempComputer?.type!}
-                          processor={tempComputer?.processor!}
-                          ram={tempComputer?.ram!}
-                          comment={tempComputer?.comment!}
+                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempProcessors?.name}</h1>
+                        <EditProcessorForm
+                          id={tempProcessors?.id!}
+                          name={tempProcessors?.name!}
+                          vitesse={tempProcessors?.vitesse!}
+                          niveau= {tempProcessors?.niveau!}
                         />
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
-                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + computer.id).then(() => {
-                        GetAllComputers()
+                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + processor.id).then(() => {
+                        GetAllProcessors()
                       })
                     }}><DeleteIcon /></button>
                   </td>
-                  <td className='table-data'>{computer.name}</td>
-                  <td className='table-data'>{computer.type?.type}</td>
-                  <td className='table-data'> {computer.brand}</td>
-                  <td className='table-data'>{computer.processor?.name}</td>
-                  <td className='table-data'>{computer.ram}</td>
-                  <td className='table-data'>{computer.state?.state}</td>
-                  <td className='table-data'>{computer.comment}</td>
+                  <td className='table-data'>{processor.name}</td>
+                  <td className='table-data'>{processor.niveau}</td>
+                  <td className='table-data'> {processor.vitesse}</td>
                 </div>
 
               </>
