@@ -5,18 +5,18 @@ import { Computer } from './ComputerQuerys'
 import '../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import EditComputerForm from './EditComputerForm';
 
 const ListOfIngredients = () => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
-  const [open, setOpen] = React.useState(false);
 
+  const [open, setOpen] = useState(false);
+  
+  const [tempComputer, setTempComputer] = useState<Computer>();
 
   const GetAllComputers = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
@@ -24,12 +24,14 @@ const ListOfIngredients = () => {
     })
   }
 
-  const handleOpen = () => {
+  const handleOpen = (v: Computer) => {
+    setTempComputer(v)
     setOpen(true);
 
   };
   const handleClose = () => {
     setOpen(false);
+    GetAllComputers()
   };
 
   useEffect(() => {
@@ -73,7 +75,7 @@ const ListOfIngredients = () => {
               <>
                 <div className='table-row'>
                   <td className='table-data'>
-                    <button className='actions' onClick={handleOpen}>
+                    <button className='actions' onClick={() => handleOpen(computer)}>
                       <EditIcon />
                     </button>
                     <Modal
@@ -83,16 +85,16 @@ const ListOfIngredients = () => {
                       aria-describedby="parent-modal-description"
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
-                        <h1 style={{position:'relative', left:'30%'}}>Edit {computer.name}</h1>
+                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputer?.name}</h1>
                         <EditComputerForm
-                          id={computer.id}
-                          name={computer.name}
-                          state={computer.state}
-                          brand={computer.brand}
-                          type={computer.type}
-                          processor={computer.processor}
-                          ram={computer.ram}
-                          comment={computer.comment}
+                          id={tempComputer?.id!}
+                          name={tempComputer?.name!}
+                          state={tempComputer?.state!}
+                          brand={tempComputer?.brand!}
+                          type={tempComputer?.type!}
+                          processor={tempComputer?.processor!}
+                          ram={tempComputer?.ram!}
+                          comment={tempComputer?.comment!}
                         />
                       </Box>
                     </Modal>
