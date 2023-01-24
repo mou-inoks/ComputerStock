@@ -5,7 +5,7 @@ import Navbar from '../../Components/Navbar'
 import { Typography } from '@mui/material'
 
 
-const ListComputerTypeScreen = () => {
+const ListUserScreen = () => {
  return (<>
  <div>
  <header className="App-header">
@@ -21,4 +21,4 @@ const ListComputerTypeScreen = () => {
  )
 }
 
-export default ListComputerTypeScreen
+export default ListUserScreen
