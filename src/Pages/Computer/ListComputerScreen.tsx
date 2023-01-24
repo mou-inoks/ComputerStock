@@ -1,6 +1,6 @@
 import React from 'react'
 import AccordionMenu from '../../Components/Accordion'
-import ListComputer from '../../Components/ListComputer'
+import ListComputer from '../../Components/Computers/ListComputer'
 import Navbar from '../../Components/Navbar'
 import { Typography } from '@mui/material'
 
