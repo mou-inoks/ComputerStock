@@ -36,10 +36,6 @@ export default function AccordionMenu() {
     </AccordionDetails>
 
 
-
-
-
-
     <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
      <AccordionSummary
       expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
@@ -52,12 +48,12 @@ export default function AccordionMenu() {
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New Processor</Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-processor'> New Processor</Link>
       </ListItemButton>
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List Processors</Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-processors'> List Processors</Link>
       </ListItemButton>
 
      </AccordionDetails>
@@ -76,12 +72,12 @@ export default function AccordionMenu() {
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New computer state</Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-state'> New computer state</Link>
       </ListItemButton>
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List states </Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-states'> List states </Link>
       </ListItemButton>
 
      </AccordionDetails>
@@ -101,12 +97,12 @@ export default function AccordionMenu() {
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New computer type</Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer-type'> New computer type</Link>
       </ListItemButton>
 
       <ListItemButton sx={{ textAlign: 'center' }}>
        <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List computer types </Link>
+       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computers-type'> List computer types </Link>
       </ListItemButton>
 
      </AccordionDetails>
