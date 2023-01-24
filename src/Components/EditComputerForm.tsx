@@ -13,6 +13,7 @@ const EditComputerForm = (computer: Computer) => {
   const [typeArr, setTypeArr] = useState<ComputerType[]>([])
 
   const [processorArr, setProcessorArr] = useState<Processor[]>([])
+  console.log("in the component",computer)
 
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
@@ -74,7 +75,7 @@ const EditComputerForm = (computer: Computer) => {
           <TextField
             onChange={handleChange}
             name='name'
-            sx={{ position: 'absolute', left: '43%', top: '20%', backgroundColor: '#3A3A3A' }}
+            sx={{ position: 'absolute', top: '20%'}}
             required
             id="name"
             label="Name"
@@ -82,17 +83,16 @@ const EditComputerForm = (computer: Computer) => {
           <Autocomplete
             onChange={(e, v) => {
               values.type = v
-              console.log("type", v)
             }}
             getOptionLabel={(options) => options.type}
-            sx={{ width: 240, position: 'absolute', left: '58%', top: '20%' }}
+            sx={{ width: 240, position: 'absolute', top: '35%' }}
             options={typeArr}
-            renderInput={(params) => <TextField name='type' {...params} label="Type" sx={{ backgroundColor: '#3A3A3A' }} />}
+            renderInput={(params) => <TextField name='type' {...params} label="Type"  />}
           />
           <TextField
             onChange={handleChange}
             name='brand'
-            sx={{ position: 'absolute', left: '43%', top: '30%', backgroundColor: '#3A3A3A' }}
+            sx={{ position: 'absolute',  top: '50%'}}
             required
             id="brand"
             label="Brand"
@@ -103,14 +103,14 @@ const EditComputerForm = (computer: Computer) => {
               console.log("processor", v)
             }}
             getOptionLabel={(options) => options.name}
-            sx={{ width: 240, position: 'absolute', left: '58%', top: '30%' }}
+            sx={{ width: 240, position: 'absolute', top: '65%' }}
             options={processorArr}
-            renderInput={(params) => <TextField name='processor'{...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}
+            renderInput={(params) => <TextField name='processor'{...params} label="Processor"  />}
           />
           <TextField
             onChange={handleChange}
             name='ram'
-            sx={{ position: 'absolute', left: '43%', top: '40%', backgroundColor: '#3A3A3A' }}
+            sx={{ position: 'absolute', left: '50%', top: '20%' }}
             required
             id="ram"
             label="Ram"
@@ -121,14 +121,14 @@ const EditComputerForm = (computer: Computer) => {
               console.log("state", v)
             }}
             getOptionLabel={(options) => options.state}
-            sx={{ width: 240, position: 'absolute', left: '58%', top: '40%' }}
+            sx={{ width: 240, position: 'absolute', left: '50%', top: '35%' }}
             options={stateArr}
-            renderInput={(params) => <TextField {...params} name='state' label="State" sx={{ backgroundColor: '#3A3A3A' }} />}
+            renderInput={(params) => <TextField {...params} name='state' label="State" />}
           />
           <TextField
             onChange={handleChange}
             name='comment'
-            sx={{ position: 'absolute', left: '50%', top: '50%', backgroundColor: '#3A3A3A' }}
+            sx={{ position: 'absolute', left: '50%', top: '50%' }}
             required
             multiline
             rows={5}
@@ -138,7 +138,7 @@ const EditComputerForm = (computer: Computer) => {
           />
 
         </Box>
-        <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+        <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Modify</Button>
       </Form>
     }}
   </Formik>

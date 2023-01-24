@@ -26,6 +26,7 @@ const ListOfIngredients = () => {
 
   const handleOpen = () => {
     setOpen(true);
+
   };
   const handleClose = () => {
     setOpen(false);
@@ -67,7 +68,7 @@ const ListOfIngredients = () => {
           <th className='header__item'>Comment</th>
         </tr>
         <tr>
-          {computers.map((computer, index) => {
+          {computers.map((computer) => {
             return (
               <>
                 <div className='table-row'>
@@ -82,21 +83,21 @@ const ListOfIngredients = () => {
                       aria-describedby="parent-modal-description"
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
-                        <h1>Edit {computers[index].name}</h1>
+                        <h1 style={{position:'relative', left:'30%'}}>Edit {computer.name}</h1>
                         <EditComputerForm
-                          id={computers[index].id}
-                          name={computers[index].name}
-                          state={computers[index].state}
-                          brand={computers[index].brand}
-                          type={computers[index].type}
-                          processor={computers[index].processor}
-                          ram={computers[index].ram}
-                          comment={computers[index].comment}
+                          id={computer.id}
+                          name={computer.name}
+                          state={computer.state}
+                          brand={computer.brand}
+                          type={computer.type}
+                          processor={computer.processor}
+                          ram={computer.ram}
+                          comment={computer.comment}
                         />
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
-                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + computers[index].id).then(() => {
+                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + computer.id).then(() => {
                         GetAllComputers()
                       })
                     }}><DeleteIcon /></button>
