@@ -2,18 +2,10 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
-import Autocomplete from '@mui/material/Autocomplete'
-import { Computer, Processor, State, ComputerType } from '../Computers/ComputerQuerys'     
+import { Processor } from '../Computers/ComputerQuerys'     
 
 
 const CreateProcessorForm = () => {
-
-  const [stateArr, setStateArr] = useState<State[]>([])
-
-  const [typeArr, setTypeArr] = useState<ComputerType[]>([])
-
-  const [processorArr, setProcessorArr] = useState<Processor[]>([])
-
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a Processor</Typography>
@@ -28,10 +20,14 @@ const CreateProcessorForm = () => {
           values: Processor,
           { setSubmitting }: FormikHelpers<Processor>
         ) => {
-         
+         axios.post('https://localhost:7107/api/ComputerStock/processors', values).then(res => {
+          console.log(res)
+          setSubmitting(true)
+          alert('Processor created sucessfully ')
+         })
         }}
       >
-        {({ values, handleChange }) => {
+        {({ handleChange }) => {
           return <Form>
             <Box
               component="form"

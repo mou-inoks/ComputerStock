@@ -1,8 +1,8 @@
 import React from 'react'
 import AccordionMenu from '../../Components/Accordion'
-import ListComputer from '../../Components/Computers/ListComputer'
 import Navbar from '../../Components/Navbar'
 import { Typography } from '@mui/material'
+import ListProcessors from '../../Components/Processors/ListProcessors'
 
 
 const ListProcessorsScreen = () => {
@@ -17,7 +17,7 @@ const ListProcessorsScreen = () => {
   </div>
   <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>List of processors</Typography>
  </div>
- 
+ <ListProcessors />
  </>
  )
 }

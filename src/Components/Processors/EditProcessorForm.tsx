@@ -22,10 +22,10 @@ const EditProcessorForm = (processor: Processor) => {
     { setSubmitting }: FormikHelpers<Processor>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/ComputerStock/update', values).then(() => alert("Computer Sucessfully modified"))
+    axios.post('https://localhost:7107/api/ComputerStock/processors/update', values).then(() => alert("Computer Sucessfully modified"))
    }}
   >
-   {({ values, handleChange }) => {
+   {({ values ,handleChange }) => {
     return <Form>
      <Box
       component="form"
@@ -38,25 +38,28 @@ const EditProcessorForm = (processor: Processor) => {
       <TextField
        onChange={handleChange}
        name='name'
-       sx={{ position: 'absolute', left: '43%', top: '20%', backgroundColor: '#3A3A3A' }}
+       sx={{ position: 'absolute', top: '20%', left:'30%' }}
        required
        id="name"
+       defaultValue={values.name}
        label="Name"
       />
       <TextField
        onChange={handleChange}
        name='niveau'
-       sx={{ position: 'absolute', left: '43%', top: '30%', backgroundColor: '#3A3A3A' }}
+       sx={{ position: 'absolute', top: '50%', left:'30%' }}
        required
        id="niveau"
+       defaultValue={values.niveau}
        label="Niveau"
       />
       <TextField
        onChange={handleChange}
        name='vitesse'
-       sx={{ position: 'absolute', left: '60%', top: '20%', backgroundColor: '#3A3A3A' }}
+       sx={{ position: 'absolute', top: '35%', left:'30%'  }}
        required
        id="vitesse"
+       defaultValue={values.vitesse}
        label="Vitesse"
       />
 
