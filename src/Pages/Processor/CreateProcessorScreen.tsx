@@ -7,9 +7,9 @@ import CreateProcessorForm from '../../Components/Processors/CreateProcessorForm
 export default function CreateProcessorScreen() {
   return (
     <div>
-      <header className="App-header">
-        <Navbar />
+      <header >
         <img src={require('../../imgs/logo.png')} />
+        <Navbar />
       </header>
       <div id='accordion'>
         <AccordionMenu />

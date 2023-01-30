@@ -6,9 +6,9 @@ import Navbar from '../../Components/Navbar'
 export default function CreateComputerScreen() {
   return (
     <div>
-      <header className="App-header">
-        <Navbar />
+      <header>
         <img src={require('../../imgs/logo.png')} />
+        <Navbar />
       </header>
       <div id='accordion'>
         <AccordionMenu />

@@ -63,7 +63,7 @@ const ListOfIngredients = () => {
   };
 
 
-  return (<>
+  return (
     <table className='table'>
       <tbody>
         <tr className='table-header'>
@@ -135,7 +135,6 @@ const ListOfIngredients = () => {
       </tbody>
     </table>
 
-  </>
   );
 }
 

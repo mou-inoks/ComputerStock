@@ -6,21 +6,19 @@ import { Typography } from '@mui/material'
 
 
 const ListComputerScreen = () => {
- return (<>
- <div>
- <header className="App-header">
-   <Navbar />
-   <img src={require('../../imgs/logo.png')} />
-  </header>
-  <div id='accordion'>
-   <AccordionMenu />
-  </div>
-  <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '50%', top: '10%', color: '#bd5457' }} className='h1'>List of computers</Typography>
-  <ListComputer />
- </div>
- 
- </>
- )
+  return (
+    <div>
+      <header>
+        <img src={require('../../imgs/logo.png')} />
+        <Navbar />
+      </header>
+      <div id='accordion'>
+        <AccordionMenu />
+        <ListComputer /> 
+      </div>
+
+    </div>
+  )
 }
 
 export default ListComputerScreen

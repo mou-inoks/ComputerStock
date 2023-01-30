@@ -29,9 +29,9 @@ a:hover{
 .table {
  width: 80vh;
  height: 100px;
- position: relative;
- bottom: 900px;
+ position: absolute;
  left: 35%;
+ top: 30%;
  border:1px solid #333232;
 }
 

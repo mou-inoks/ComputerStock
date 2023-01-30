@@ -7,10 +7,13 @@ import ListProcessorsScreen from './Pages/Processor/ListProcessorsScreen';
 import CreateProcessorScreen from './Pages/Processor/CreateProcessorScreen';
 import ListComputerStateScreen from './Pages/State/ListComputerStateScreen';
 import CreateComputerStateScreen from './Pages/State/CreateComputerStateScreen';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import { darkTheme } from './css/darkTheme';
 
 function App() {
   return (
     <div className="App">
+      <ThemeProvider theme={darkTheme} >
       <Routes>
         <Route path='/' element={<ListComputerScreen/>}/>
         <Route path='/create-computer' element={<CreateComputerScreen/>}/>
@@ -26,6 +29,7 @@ function App() {
         <Route path='/create-state' element={<CreateComputerStateScreen/>}/>
 
       </Routes> 
+      </ThemeProvider>
     </div>
   );
 }

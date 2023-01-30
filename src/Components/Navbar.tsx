@@ -56,6 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -155,8 +156,8 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, position:'static', float:'right', width: '145vh'}}>
-      <AppBar sx={{backgroundColor:'#4e4e4e'}} position="static" >
+    <Box sx={{ flexGrow: 1, position: 'static', float: 'right', width: '145vh' }}>
+      <AppBar sx={{ backgroundColor: '#4e4e4e' }} position="static" >
         <Toolbar>
           <IconButton
             size="large"
