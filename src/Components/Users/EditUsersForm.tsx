@@ -17,7 +17,7 @@ const EditUserForm = (user: User) => {
     { setSubmitting }: FormikHelpers<User>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/ComputerStock/state/update', values).then(()=> alert("Computer Sucessfully modified"))
+    axios.post('https://localhost:7107/api/ComputerStock/user/update', values).then(()=> alert("Computer Sucessfully modified"))
    }}
   >
    {({ values, handleChange }) => {
