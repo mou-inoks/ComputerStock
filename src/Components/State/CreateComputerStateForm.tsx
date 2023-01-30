@@ -8,6 +8,7 @@ import { State } from '../Computers/ComputerQuerys'
 const CreateComputerStateForm = () => {
  return (
   <div>
+    
    <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '50%', top: '10%', color: '#bd5457' }} className='h1'>Create a state</Typography>
    <Formik<State>
     initialValues={{
