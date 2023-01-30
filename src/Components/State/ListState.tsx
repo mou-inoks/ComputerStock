@@ -78,7 +78,7 @@ const ListOfIngredients = () => {
                       aria-labelledby="parent-modal-title"
                       aria-describedby="parent-modal-description"
                     >
-                      <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
+                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color:'white'  }}>
                         <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputerState?.state}</h1>
                         <EditComputerStateForm
                          state={tempComputerState?.state!} 

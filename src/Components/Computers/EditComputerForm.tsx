@@ -6,7 +6,11 @@ import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
-const EditComputerForm = (computer: Computer) => {
+interface EditComputerProps {
+ computer: Computer
+}
+
+const EditComputerForm = (value: EditComputerProps) => {
 
  const [stateArr, setStateArr] = useState<State[]>([])
 
@@ -44,14 +48,14 @@ const EditComputerForm = (computer: Computer) => {
  return (<div>
   <Formik<Computer>
    initialValues={{
-    id: computer.id,
-    name: computer.name,
-    type: computer.type,
-    brand: computer.brand,
-    processor: computer.processor,
-    ram: computer.ram,
-    state: computer.state,
-    comment: computer.comment
+    id: value.computer.id,
+    name: value.computer.name,
+    type: value.computer.type,
+    brand: value.computer.brand,
+    processor: value.computer.processor,
+    ram: value.computer.ram,
+    state: value.computer.state,
+    comment: value.computer.comment
    }}
    onSubmit={(
     values: Computer,

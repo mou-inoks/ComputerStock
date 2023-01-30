@@ -122,7 +122,7 @@ const CreateComputerForm = () => {
                   values.processor = v
                   console.log("processor", v)
                 }}
-                getOptionLabel={(options) => options.name}
+                getOptionLabel={(options) => `${options.name} ${options.niveau} ${options.vitesse}`}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '30%' }}
                 options={processorArr}
                 renderInput={(params) => <TextField name='processor'{...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}

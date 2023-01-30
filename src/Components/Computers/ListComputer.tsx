@@ -9,18 +9,22 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import EditComputerForm from './EditComputerForm';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import DetailsComputer from './DetailsComputer';
 
 const ListOfIngredients = () => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
 
   const [open, setOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   
   const [tempComputer, setTempComputer] = useState<Computer>();
 
   const GetAllComputers = () => {
     axios.get('https://localhost:7107/api/ComputerStock').then(res => {
       setComputers(res.data)
+      console.log(res.data)
     })
   }
 
@@ -29,8 +33,14 @@ const ListOfIngredients = () => {
     setOpen(true);
 
   };
+
+  const handleOpenDetails = (v: Computer) => {
+    setTempComputer(v)
+    setDetailsOpen(true);
+  }
   const handleClose = () => {
     setOpen(false);
+    setDetailsOpen(false);
     GetAllComputers()
   };
 
@@ -86,16 +96,7 @@ const ListOfIngredients = () => {
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
                         <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputer?.name}</h1>
-                        <EditComputerForm
-                          id={tempComputer?.id!}
-                          name={tempComputer?.name!}
-                          state={tempComputer?.state!}
-                          brand={tempComputer?.brand!}
-                          type={tempComputer?.type!}
-                          processor={tempComputer?.processor!}
-                          ram={tempComputer?.ram!}
-                          comment={tempComputer?.comment!}
-                        />
+                        <EditComputerForm computer={tempComputer!} />
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
@@ -103,11 +104,25 @@ const ListOfIngredients = () => {
                         GetAllComputers()
                       })
                     }}><DeleteIcon /></button>
+                    <button className='actions' onClick={() => handleOpenDetails(computer)}>
+                      <RemoveRedEyeIcon />
+                    </button>
+                    <Modal
+                      open={detailsOpen}
+                      onClose={handleClose}
+                      aria-labelledby="parent-modal-title"
+                      aria-describedby="parent-modal-description"
+                    >
+                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color:'white' }}>
+                        <h1 style={{position:'relative', left:'30%'}}>Details {tempComputer?.name}</h1>
+                        <DetailsComputer  computer={tempComputer!}/>
+                      </Box>
+                    </Modal>
                   </td>
                   <td className='table-data'>{computer.name}</td>
                   <td className='table-data'>{computer.type?.type}</td>
                   <td className='table-data'> {computer.brand}</td>
-                  <td className='table-data'>{computer.processor?.name}</td>
+                  <td className='table-data'>{computer.processor?.niveau}</td>
                   <td className='table-data'>{computer.ram}</td>
                   <td className='table-data'>{computer.state?.state}</td>
                   <td className='table-data'>{computer.comment}</td>
