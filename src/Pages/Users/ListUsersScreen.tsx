@@ -20,7 +20,7 @@ const ListUserScreen = () => {
         fontFamily: 'Gilroy,sans-serif',
         fontSize: '40px',
         position: 'absolute',
-        left: '45%',
+        left: '50%',
         top: '10%',
         color: '#bd5457'
       }}
