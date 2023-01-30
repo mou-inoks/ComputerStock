@@ -82,34 +82,6 @@ export default function AccordionMenu() {
 
      </AccordionDetails>
     </Accordion>
-
-
-
-    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
-     <AccordionSummary
-      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-     >
-      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} />Type</Typography>
-     </AccordionSummary>
-     <AccordionDetails>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer-type'> New computer type</Link>
-      </ListItemButton>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computers-type'> List computer types </Link>
-      </ListItemButton>
-
-     </AccordionDetails>
-    </Accordion>
-
-
-
    </Accordion>
 
 

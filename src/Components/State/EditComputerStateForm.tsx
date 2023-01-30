@@ -5,7 +5,7 @@ import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
-const EditComputerForm = (state: State) => {
+const EditComputerStateForm = (state: State) => {
  return (<div>
   <Formik<State>
    initialValues={{
@@ -50,4 +50,4 @@ const EditComputerForm = (state: State) => {
  )
 }
 
-export default EditComputerForm
+export default EditComputerStateForm

@@ -25,9 +25,6 @@ function App() {
         <Route path='/list-states' element={<ListComputerStateScreen/>}/>
         <Route path='/create-state' element={<CreateComputerStateScreen/>}/>
 
-        <Route path='/list-computers-type' element={<ListComputerScreen/>}/>
-        <Route path='/create-computer-type' element={<ListComputerScreen/>}/>
-        
       </Routes> 
     </div>
   );
