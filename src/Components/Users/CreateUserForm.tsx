@@ -20,10 +20,10 @@ const CreateUserForm = () => {
     ) => {
      console.log(values)
      axios.post('https://localhost:7107/api/ComputerStock/user', {
-      state: values.name,
+      name: values.name,
      })
       .then(function (response) {
-       alert('A new state as been added sucessfully ')
+       alert('A new user as been added sucessfully ')
        setSubmitting(true)
        console.log(response)
       })
