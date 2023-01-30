@@ -78,7 +78,7 @@ const EditComputerForm = (value: EditComputerProps) => {
       <TextField
        onChange={handleChange}
        name='name'
-       sx={{ position: 'absolute', top: '20%' }}
+       sx={{ position: 'absolute', top: '20%', color:'white' }}
        required
        defaultValue={values.name}
        id="name"
