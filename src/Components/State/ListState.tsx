@@ -18,7 +18,7 @@ const ListOfIngredients = () => {
   
   const [tempComputerState, setTempComputerState] = useState<State>();
 
-  const GetAllComputers = () => {
+  const GetAllStates = () => {
     axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
       setComputersStates(res.data)
     })
@@ -31,11 +31,11 @@ const ListOfIngredients = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    GetAllComputers()
+    GetAllStates()
   };
 
   useEffect(() => {
-    GetAllComputers()
+    GetAllStates()
   }, [])
 
   const modalStyle = {
@@ -80,12 +80,16 @@ const ListOfIngredients = () => {
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500 }}>
                         <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputerState?.state}</h1>
-                        <EditComputerStateForm state={tempComputerState?.state!} id={tempComputerState?.id!} /> 
+                        <EditComputerStateForm
+                         state={tempComputerState?.state!} 
+                         id={tempComputerState?.id!} 
+                        /> 
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
-                      axios.delete('https://localhost:7107/api/ComputerStock/state/ ' + tempComputerState?.id).then(() => {
-                        GetAllComputers()
+                      console.log("Computer to delete", tempComputerState)
+                      axios.delete('https://localhost:7107/api/ComputerStock/state/ ' + computerState.id).then(() => {
+                        GetAllStates()
                       })
                     }}><DeleteIcon /></button>
                   </td>
