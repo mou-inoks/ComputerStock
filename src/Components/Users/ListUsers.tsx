@@ -7,25 +7,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { State } from '../Computers/ComputerQuerys';
-import EditComputerStateForm from './EditComputerStateForm';
+import { User } from '../Computers/ComputerQuerys';
+import EditUserForm from './EditUsersForm';
 
-const ListState = () => {
+const ListUsers = () => {
 
-  const [computersState, setComputersStates] = useState<Array<State>>([])
+  const [Users, setUsers] = useState<Array<User>>([])
 
   const [open, setOpen] = useState(false);
   
-  const [tempComputerState, setTempComputerState] = useState<State>();
+  const [tempUser, setUser] = useState<User>();
 
   const GetAllStates = () => {
-    axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
-      setComputersStates(res.data)
+    axios.get('https://localhost:7107/api/ComputerStock/user').then(res => {
+      setUsers(res.data)
     })
   }
 
-  const handleOpen = (v: State) => {
-    setTempComputerState(v)
+  const handleOpen = (v: User) => {
+    setUser(v)
     setOpen(true);
 
   };
@@ -61,15 +61,15 @@ const ListState = () => {
             <a href='create-state'><AddCircleIcon /></a>
             Action
           </th>
-          <th className='header__item'>State</th>
+          <th className='header__item'>Name</th> 
         </tr>
         <tr>
-          {computersState.map((computerState) => {
+          {Users.map((user) => {
             return (
               <>
                 <div className='table-row'>
                   <td className='table-data'>
-                    <button className='actions' onClick={() => handleOpen(computerState)}>
+                    <button className='actions' onClick={() => handleOpen(user)}>
                       <EditIcon />
                     </button>
                     <Modal
@@ -79,21 +79,21 @@ const ListState = () => {
                       aria-describedby="parent-modal-description"
                     >
                       <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color:'white'  }}>
-                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputerState?.state}</h1>
-                        <EditComputerStateForm
-                         state={tempComputerState?.state!} 
-                         id={tempComputerState?.id!} 
+                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempUser?.name}</h1>
+                        <EditUserForm
+                         name={tempUser?.name!} 
+                         id={tempUser?.id!} 
                         /> 
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
-                      console.log("Computer to delete", tempComputerState)
-                      axios.delete('https://localhost:7107/api/ComputerStock/state/ ' + computerState.id).then(() => {
+                      console.log("Computer to delete", tempUser)
+                      axios.delete('https://localhost:7107/api/ComputerStock/state/ ' + user.id).then(() => {
                         GetAllStates()
                       })
                     }}><DeleteIcon /></button>
                   </td>
-                  <td className='table-data'>{computerState.state}</td>
+                  <td className='table-data'>{user.name}</td>
                 </div>
 
               </>
@@ -107,4 +107,4 @@ const ListState = () => {
   );
 }
 
-export default ListState
+export default ListUsers

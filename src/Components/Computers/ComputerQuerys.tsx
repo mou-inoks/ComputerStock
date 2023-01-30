@@ -17,6 +17,11 @@ export interface State{
  state: string
 }
 
+export interface User{
+ id: number,
+ name: string
+}
+
 
 export interface Computer {
  id: number,

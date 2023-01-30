@@ -97,12 +97,12 @@ export default function AccordionMenu() {
 
      <ListItemButton sx={{ textAlign: 'center' }}>
       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-computer'> New User </Link>
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-users'> New User </Link>
      </ListItemButton>
 
      <ListItemButton sx={{ textAlign: 'center' }}>
       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-computer'> List Users</Link>
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-users'> List Users</Link>
      </ListItemButton>
 
     </AccordionDetails>

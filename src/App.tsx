@@ -9,6 +9,8 @@ import ListComputerStateScreen from './Pages/State/ListComputerStateScreen';
 import CreateComputerStateScreen from './Pages/State/CreateComputerStateScreen';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import { darkTheme } from './css/darkTheme';
+import ListUserScreen from './Pages/Users/ListUsersScreen';
+import CreateUserScreen from './Pages/Users/CreateUserScreen';
 
 function App() {
   return (
@@ -19,8 +21,8 @@ function App() {
         <Route path='/create-computer' element={<CreateComputerScreen/>}/>
         <Route path='/list-computer' element={<ListComputerScreen/>}/>
 
-        <Route path='/list-users' element={<ListComputerScreen/>}/>
-        <Route path='/create-users' element={<ListComputerScreen/>}/>
+        <Route path='/list-users' element={<ListUserScreen/>}/>
+        <Route path='/create-users' element={<CreateUserScreen/>}/>
 
         <Route path='/list-processors' element={<ListProcessorsScreen/>}/>
         <Route path='/create-processor' element={<CreateProcessorScreen/>}/>

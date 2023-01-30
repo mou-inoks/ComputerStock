@@ -12,7 +12,7 @@ import EditComputerForm from './EditComputerForm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DetailsComputer from './DetailsComputer';
 
-const ListOfIngredients = () => {
+const ListComputers = () => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
 
@@ -138,4 +138,4 @@ const ListOfIngredients = () => {
   );
 }
 
-export default ListOfIngredients
+export default ListComputers
