@@ -1,7 +1,7 @@
 import React from 'react'
 import AccordionMenu from '../../Components/Accordion'
-import CreateComputerForm from '../../Components/Computers/CreateComputerForm'
 import Navbar from '../../Components/Navbar'
+import CreateComputerStateForm from '../../Components/State/CreateComputerStateForm'
 
 export default function CreateComputerStateScreen() {
   return (
@@ -13,6 +13,7 @@ export default function CreateComputerStateScreen() {
       <div id='accordion'>
         <AccordionMenu />
       </div>
+      <CreateComputerStateForm /> 
     </div>
 
   )
