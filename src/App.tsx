@@ -11,6 +11,8 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import { darkTheme } from './css/darkTheme';
 import ListUserScreen from './Pages/Users/ListUsersScreen';
 import CreateUserScreen from './Pages/Users/CreateUserScreen';
+import CreateBorrowScreen from './Pages/Borrow/CreateBorrowScreen';
+import ListBorrowScreen from './Pages/Borrow/ListBorrowScreen';
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
 
         <Route path='/list-states' element={<ListComputerStateScreen/>}/>
         <Route path='/create-state' element={<CreateComputerStateScreen/>}/>
+
+        <Route path='/list-borrow' element={<ListBorrowScreen/>}/>
+        <Route path='/create-borrow' element={<CreateBorrowScreen/>}/>
 
       </Routes> 
       </ThemeProvider>

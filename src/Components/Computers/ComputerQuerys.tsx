@@ -13,7 +13,7 @@ export interface Processor{
  vitesse: string
 }
 export interface State{
- id: number, 
+ id: number,  
  state: string
 }
 
