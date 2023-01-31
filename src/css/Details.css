@@ -7,3 +7,10 @@
 .Mui-focused {
  color: white!important
 }
+
+#checkbox{
+ color: white;
+ position: relative;
+ left: 100vh;
+ bottom: 320px;
+}
