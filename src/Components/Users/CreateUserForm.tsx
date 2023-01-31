@@ -46,7 +46,7 @@ const CreateUserForm = () => {
        <TextField
         onChange={handleChange}
         name='name'
-        sx={{ position: 'absolute', left: '52%', top: '20%', backgroundColor: '#3A3A3A' }}
+        sx={{ position: 'absolute', left: '52%', top: '20%' }}
         required
         id="name"
         label="Name"

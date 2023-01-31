@@ -40,7 +40,7 @@ const CreateProcessorForm = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '43%', top: '20%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '43%', top: '20%' }}
                 required
                 id="name"
                 label="Name"
@@ -48,7 +48,7 @@ const CreateProcessorForm = () => {
                <TextField
                 onChange={handleChange}
                 name='niveau'
-                sx={{ position: 'absolute', left: '43%', top: '30%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '43%', top: '30%' }}
                 required
                 id="niveau"
                 label="Niveau"
@@ -56,7 +56,7 @@ const CreateProcessorForm = () => {
               <TextField
                 onChange={handleChange}
                 name='vitesse'
-                sx={{ position: 'absolute', left: '60%', top: '20%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '60%', top: '20%' }}
                 required
                 id="vitesse"
                 label="Vitesse"

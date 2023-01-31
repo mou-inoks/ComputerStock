@@ -94,7 +94,7 @@ const CreateComputerForm = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '43%', top: '20%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '43%', top: '20%',  }}
                 required
                 id="name"
                 label="Name"
@@ -107,12 +107,12 @@ const CreateComputerForm = () => {
                 getOptionLabel={(options) => options.type}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '20%' }}
                 options={typeArr}
-                renderInput={(params) => <TextField name='type' {...params} label="Type" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField name='type' {...params} label="Type"  />}
               />
               <TextField
                 onChange={handleChange}
                 name='brand'
-                sx={{ position: 'absolute', left: '43%', top: '30%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '43%', top: '30%' }}
                 required
                 id="brand"
                 label="Brand"
@@ -125,12 +125,12 @@ const CreateComputerForm = () => {
                 getOptionLabel={(options) => `${options.name} ${options.niveau} ${options.vitesse}`}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '30%' }}
                 options={processorArr}
-                renderInput={(params) => <TextField name='processor'{...params} label="Processor" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField name='processor'{...params} label="Processor"  />}
               />
               <TextField
                 onChange={handleChange}
                 name='ram'
-                sx={{ position: 'absolute', left: '43%', top: '40%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '43%', top: '40%'}}
                 required
                 id="ram"
                 label="Ram"
@@ -143,12 +143,12 @@ const CreateComputerForm = () => {
                 getOptionLabel={(options) => options.state}
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '40%' }}
                 options={stateArr}
-                renderInput={(params) => <TextField {...params} name='state' label="State" sx={{ backgroundColor: '#3A3A3A' }} />}
+                renderInput={(params) => <TextField {...params} name='state' label="State" />}
               />
               <TextField
                 onChange={handleChange}
                 name='comment'
-                sx={{ position: 'absolute', left: '50%', top: '50%', backgroundColor: '#3A3A3A' }}
+                sx={{ position: 'absolute', left: '50%', top: '50%' }}
                 required
                 multiline
                 rows={5}

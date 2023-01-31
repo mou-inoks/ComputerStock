@@ -1,13 +1,3 @@
-.details{
- margin: 30px;
- font-weight: bold;
- text-align: center;
-}
-
-.Mui-focused {
- color: white!important
-}
-
 #checkbox{
  color: white;
  position: absolute;
@@ -17,7 +7,7 @@
 
 .datePicker{
  width: 240;
- position: absolute;
+ position: relative;
  left: 90vh;
  top: -10vh;
 }

@@ -17,7 +17,7 @@ export default function BorrowForm() {
 
  const [fromDate, setFromDate] = useState<Date | null>(new Date())
 
- const [toDate, setToDate] = useState<Date |null >(fromDate)
+ const [toDate, setToDate] = useState<Date | null>(fromDate)
 
  const FetchFeedAllArrays = () => {
   axios.get('https://localhost:7107/api/ComputerStock/user').then(res => {
@@ -89,7 +89,7 @@ export default function BorrowForm() {
       setToDate(v)
       values.toDate = v
      }
-     
+
      return <Form>
       <Box
        component="form"
@@ -130,6 +130,7 @@ export default function BorrowForm() {
          onChange={(e) => handleFromDateChange(e)}
          renderInput={(params) => <TextField {...params} />}
         />
+
         <DesktopDatePicker
          label="To Date"
          value={values.toDate}
