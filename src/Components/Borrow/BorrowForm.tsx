@@ -63,19 +63,20 @@ export default function BorrowForm() {
      { setSubmitting }: FormikHelpers<Borrow>
     ) => {
      console.log(values)
-     // axios.post('https://localhost:7107/api/ComputerStock/borrow', {
-     //  fromDate: values.fromDate,
-     //  user: values.user?.id,
-     //  computer: values.computer?.id,
-     // })
-     //  .then(function (response) {
-     //   alert('A new computer as been added sucessfully ')
-     //   setSubmitting(true)
-     //   console.log(response)
-     //  })
-     //  .catch(function (error) {
-     //   console.log(error)
-     //  });
+     axios.post('https://localhost:7107/api/ComputerStock/borrow', {
+      fromDate: values.fromDate,
+      toDate: values.toDate,
+      user: values.user,
+      computer: values.computer,
+     })
+      .then(function (response) {
+       alert('A new computer as been added sucessfully ')
+       setSubmitting(true)
+       console.log(response)
+      })
+      .catch(function (error) {
+       console.log(error)
+      });
 
     }}
    >
