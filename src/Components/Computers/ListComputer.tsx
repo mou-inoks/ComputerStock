@@ -12,13 +12,27 @@ import EditComputerForm from './EditComputerForm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DetailsComputer from './DetailsComputer';
 
-const ListComputers = () => {
+export type ListComputersProps = {
+  isOnlyFreeChecked: boolean
+}
+const ListComputers = (props: ListComputersProps) => {
 
   const [computers, setComputers] = useState<Array<Computer>>([])
 
+  const Listfiltered = computers.filter((e) => {
+    if (props.isOnlyFreeChecked) {
+      if (e.state?.state == "In Stock") {
+        return e
+      }
+      else return null
+    }
+    else return computers
+  })
+
   const [open, setOpen] = useState(false);
+
   const [detailsOpen, setDetailsOpen] = useState(false);
-  
+
   const [tempComputer, setTempComputer] = useState<Computer>();
 
   const GetAllComputers = () => {
@@ -80,7 +94,7 @@ const ListComputers = () => {
           <th className='header__item'>Comment</th>
         </tr>
         <tr>
-          {computers.map((computer) => {
+          {Listfiltered.map((computer) => {
             return (
               <>
                 <div className='table-row'>
@@ -94,8 +108,8 @@ const ListComputers = () => {
                       aria-labelledby="parent-modal-title"
                       aria-describedby="parent-modal-description"
                     >
-                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color:'white'  }}>
-                        <h1 style={{position:'relative', left:'30%'}}>Edit {tempComputer?.name}</h1>
+                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color: 'white' }}>
+                        <h1 style={{ position: 'relative', left: '30%' }}>Edit {tempComputer?.name}</h1>
                         <EditComputerForm computer={tempComputer!} />
                       </Box>
                     </Modal>
@@ -113,9 +127,9 @@ const ListComputers = () => {
                       aria-labelledby="parent-modal-title"
                       aria-describedby="parent-modal-description"
                     >
-                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color:'white' }}>
-                        <h1 style={{position:'relative', left:'30%'}}>Details {tempComputer?.name}</h1>
-                        <DetailsComputer  computer={tempComputer!}/>
+                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color: 'white' }}>
+                        <h1 style={{ position: 'relative', left: '30%' }}>Details {tempComputer?.name}</h1>
+                        <DetailsComputer computer={tempComputer!} />
                       </Box>
                     </Modal>
                   </td>
