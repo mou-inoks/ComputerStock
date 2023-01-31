@@ -21,7 +21,13 @@ export interface User{
  id: number,
  name: string
 }
-
+export interface Borrow {
+ id: number,
+ fromDate: Date | null, 
+ toDate: Date | null
+ user: User | null, 
+ computer: Computer | null
+}
 
 export interface Computer {
  id: number,

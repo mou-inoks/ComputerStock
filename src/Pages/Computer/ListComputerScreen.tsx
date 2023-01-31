@@ -19,8 +19,8 @@ const ListComputerScreen = () => {
       <div id='accordion'>
         <AccordionMenu />
         <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>List of Computers</Typography>
-        <FormControlLabel id='checkbox' control={<Checkbox defaultChecked={false} value={checkbox} onClick={() => setCheckbox(!checkbox)}/>} label="Only in stock" />
-        <ListComputer isOnlyFreeChecked={checkbox} /> 
+        <FormControlLabel id='checkbox' control={<Checkbox defaultChecked={false} value={checkbox} onClick={() => setCheckbox(!checkbox)} />} label="Only in stock" />
+        <ListComputer isOnlyFreeChecked={checkbox} />
       </div>
 
     </div>
