@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { Borrow, Computer, User } from '../Computers/ComputerQuerys'
+import { Borrow, Computer, State, User } from '../Computers/ComputerQuerys'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import Autocomplete from '@mui/material/Autocomplete/Autocomplete'
@@ -22,6 +22,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
  const [toDate, setToDate] = useState<Date>(props.borrow.toDate)
 
+ const [stateArr, SetStateArr] = useState<State[]>([])
 
  const handleFromDateChange = (v: Date | null) => {
 
@@ -45,6 +46,13 @@ const EditBorrowForm = (props: BorrowPorps) => {
   axios.get('https://localhost:7107/api/computer-stock').then(res => {
    console.log(res)
    setComputerArr(res.data)
+  }).catch(err => {
+   console.log(err)
+  })
+
+  axios.get('https://localhost:7107/api/computer-stock/state').then(res => {
+   console.log(res)
+   SetStateArr(res.data)
   }).catch(err => {
    console.log(err)
   })
@@ -105,6 +113,15 @@ const EditBorrowForm = (props: BorrowPorps) => {
        sx={{ width: 240, position: 'absolute', left: '30%', top: '35%' }}
        options={userArr}
        renderInput={(params) => <TextField name='Name' {...params} label="User" />}
+      />
+
+      <Autocomplete
+       onChange={(e, v) => values.computer!.state = v}
+       getOptionLabel={(options) => options.state}
+       defaultValue={values.computer?.state}
+       sx={{ width: 240, position: 'absolute', left: '30%', top: '50%' }}
+       options={stateArr}
+       renderInput={(params) => <TextField {...params} name='state' label="Computer State" />}
       />
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
