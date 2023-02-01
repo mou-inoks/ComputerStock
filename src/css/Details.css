@@ -11,3 +11,9 @@
  left: 90vh;
  top: -10vh;
 }
+
+.datePickerInEditForm{
+ position: relative;
+ top:220px;
+ left: 10%;
+}
