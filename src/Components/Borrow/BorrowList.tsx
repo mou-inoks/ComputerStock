@@ -54,8 +54,6 @@ const BorrowList = () => {
   pb: 3,
  };
 
-
-
  return (<>
   <table className='table'>
    <tbody>
