@@ -23,8 +23,8 @@ export interface User{
 }
 export interface Borrow {
  id: number,
- fromDate: Date | null, 
- toDate: Date | null
+ fromDate: Date, 
+ toDate: Date
  user: User | null, 
  computer: Computer | null
 }

@@ -17,7 +17,7 @@ const EditComputerStateForm = (state: State) => {
     { setSubmitting }: FormikHelpers<State>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/ComputerStock/state/update', values).then(()=> alert("Computer Sucessfully modified"))
+    axios.post('https://localhost:7107/api/computer-stock/state/update', values).then(()=> alert("Computer Sucessfully modified"))
    }}
   >
    {({ values, handleChange }) => {

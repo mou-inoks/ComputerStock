@@ -36,7 +36,7 @@ const ListComputers = (props: ListComputersProps) => {
   const [tempComputer, setTempComputer] = useState<Computer>();
 
   const GetAllComputers = () => {
-    axios.get('https://localhost:7107/api/ComputerStock').then(res => {
+    axios.get('https://localhost:7107/api/computer-stock').then(res => {
       setComputers(res.data)
       console.log(res.data)
     })
@@ -114,7 +114,7 @@ const ListComputers = (props: ListComputersProps) => {
                       </Box>
                     </Modal>
                     <button className='actions' onClick={() => {
-                      axios.delete('https://localhost:7107/api/ComputerStock/ ' + computer.id).then(() => {
+                      axios.delete('https://localhost:7107/api/computer-stock/ ' + computer.id).then(() => {
                         GetAllComputers()
                       })
                     }}><DeleteIcon /></button>

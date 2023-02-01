@@ -22,7 +22,7 @@ const EditProcessorForm = (processor: Processor) => {
     { setSubmitting }: FormikHelpers<Processor>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/ComputerStock/processors/update', values).then(() => alert("Computer Sucessfully modified"))
+    axios.post('https://localhost:7107/api/computer-stock/processors/update', values).then(() => alert("Computer Sucessfully modified"))
    }}
   >
    {({ values ,handleChange }) => {

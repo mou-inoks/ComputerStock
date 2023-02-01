@@ -20,7 +20,7 @@ const ListProcessors = () => {
  const [tempProcessors, setTempProcessors] = useState<Processor>();
 
  const GetAllProcessors = () => {
-  axios.get('https://localhost:7107/api/ComputerStock/processors').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock/processors').then(res => {
    setProcessors(res.data)
   })
  }
@@ -92,7 +92,7 @@ const ListProcessors = () => {
            </Box>
           </Modal>
           <button className='actions' onClick={() => {
-           axios.delete('https://localhost:7107/api/ComputerStock/processor/ ' + processor.id).then(() => {
+           axios.delete('https://localhost:7107/api/computer-stock/processor/ ' + processor.id).then(() => {
             GetAllProcessors()
            })
           }}><DeleteIcon /></button>

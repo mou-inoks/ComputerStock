@@ -20,7 +20,7 @@ const CreateProcessorForm = () => {
           values: Processor,
           { setSubmitting }: FormikHelpers<Processor>
         ) => {
-         axios.post('https://localhost:7107/api/ComputerStock/processors', values).then(res => {
+         axios.post('https://localhost:7107/api/computer-stock/processors', values).then(res => {
           console.log(res)
           setSubmitting(true)
           alert('Processor created sucessfully ')

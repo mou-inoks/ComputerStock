@@ -20,7 +20,7 @@ const CreateComputerStateForm = () => {
      { setSubmitting }: FormikHelpers<State>
     ) => {
      console.log(values)
-     axios.post('https://localhost:7107/api/ComputerStock/state', {
+     axios.post('https://localhost:7107/api/computer-stock/state', {
       state: values.state,
      })
       .then(function (response) {

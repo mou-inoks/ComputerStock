@@ -15,21 +15,21 @@ const CreateComputerForm = () => {
   const [processorArr, setProcessorArr] = useState<Processor[]>([])
 
   const FetchFeedAllArrays = () => {
-    axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
+    axios.get('https://localhost:7107/api/computer-stock/state').then(res => {
       console.log(res)
       setStateArr(res.data)
     }).catch(err => {
       console.log(err)
     })
 
-    axios.get('https://localhost:7107/api/ComputerStock/type').then(res => {
+    axios.get('https://localhost:7107/api/computer-stock/type').then(res => {
       console.log(res)
       setTypeArr(res.data)
     }).catch(err => {
       console.log(err)
     })
 
-    axios.get('https://localhost:7107/api/ComputerStock/processors').then(res => {
+    axios.get('https://localhost:7107/api/computer-stock/processors').then(res => {
       console.log(res)
       setProcessorArr(res.data)
     }).catch(err => {
@@ -61,7 +61,7 @@ const CreateComputerForm = () => {
           { setSubmitting }: FormikHelpers<Computer>
         ) => {
           console.log(values)
-          axios.post('https://localhost:7107/api/ComputerStock', {
+          axios.post('https://localhost:7107/api/computer-stock', {
             name: values.name,
             type: values.type,
             brand: values.brand,

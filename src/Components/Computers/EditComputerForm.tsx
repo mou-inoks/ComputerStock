@@ -19,21 +19,21 @@ const EditComputerForm = (value: EditComputerProps) => {
  const [processorArr, setProcessorArr] = useState<Processor[]>([])
 
  const FetchFeedAllArrays = () => {
-  axios.get('https://localhost:7107/api/ComputerStock/state').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock/state').then(res => {
    console.log(res)
    setStateArr(res.data)
   }).catch(err => {
    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/ComputerStock/type').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock/type').then(res => {
    console.log(res)
    setTypeArr(res.data)
   }).catch(err => {
    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/ComputerStock/processors').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock/processors').then(res => {
    console.log(res)
    setProcessorArr(res.data)
   }).catch(err => {
@@ -62,7 +62,7 @@ const EditComputerForm = (value: EditComputerProps) => {
     { setSubmitting }: FormikHelpers<Computer>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/ComputerStock/update', values).then(()=> alert("Computer Sucessfully modified"))
+    axios.post('https://localhost:7107/api/computer-stock/update', values).then(()=> alert("Computer Sucessfully modified"))
    }}
   >
    {({ values, handleChange }) => {

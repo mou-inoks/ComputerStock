@@ -7,7 +7,7 @@ import { Borrow, Computer, User } from '../Computers/ComputerQuerys'
 import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import moment from 'moment'
 
 export default function BorrowForm() {
 
@@ -15,19 +15,19 @@ export default function BorrowForm() {
 
  const [computersArr, setComputerArr] = useState<Computer[]>([])
 
- const [fromDate, setFromDate] = useState<Date | null>(new Date())
+ const [fromDate, setFromDate] = useState<Date>(new Date())
 
- const [toDate, setToDate] = useState<Date | null>(fromDate)
+ const [toDate, setToDate] = useState<Date>(new Date())
 
  const FetchFeedAllArrays = () => {
-  axios.get('https://localhost:7107/api/ComputerStock/user').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock/user').then(res => {
    console.log(res)
    setUserArr(res.data)
   }).catch(err => {
    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/ComputerStock').then(res => {
+  axios.get('https://localhost:7107/api/computer-stock').then(res => {
    console.log(res)
    setComputerArr(res.data)
   }).catch(err => {
@@ -63,14 +63,15 @@ export default function BorrowForm() {
      { setSubmitting }: FormikHelpers<Borrow>
     ) => {
      console.log(values)
-     axios.post('https://localhost:7107/api/ComputerStock/borrow', {
-      fromDate: values.fromDate,
-      toDate: values.toDate,
-      user: values.user,
-      computer: values.computer,
-     })
+
+     let param: Borrow = {
+      ...values,
+       fromDate: moment(values.fromDate).startOf('day').utc(true).toDate(),
+       toDate: moment(values.toDate).startOf('day').utc(true).toDate()  
+     }
+     axios.post('https://localhost:7107/api/computer-stock/t', param)
       .then(function (response) {
-       alert('A new computer as been added sucessfully ')
+       alert('A new computer as been added sucessfully')
        setSubmitting(true)
        console.log(response)
       })
@@ -83,12 +84,13 @@ export default function BorrowForm() {
     {({ values, handleChange }) => {
 
      const handleFromDateChange = (v: Date | null) => {
-      setFromDate(v)
-      values.fromDate = v
+      
+      setFromDate(v ?? new Date())
+      
      }
      const handleToDateChange = (v: Date | null) => {
-      setToDate(v)
-      values.toDate = v
+      setToDate(v ?? new Date())
+      
      }
 
      return <Form>
