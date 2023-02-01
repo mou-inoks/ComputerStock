@@ -21,7 +21,6 @@ const CreateProcessorForm = () => {
           { setSubmitting }: FormikHelpers<Processor>
         ) => {
          axios.post('https://localhost:7107/api/processor', values).then(res => {
-          console.log(res)
           setSubmitting(true)
           alert('Processor created sucessfully ')
          })
