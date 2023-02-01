@@ -90,25 +90,21 @@ const EditBorrowForm = (props: BorrowPorps) => {
       autoComplete="off"
      >
       <Autocomplete
-       onChange={(e, v) => {
-        values.computer = v
-        console.log("computer", v)
-       }}
+       onChange={(e, v) => values.computer = v}
+       defaultValue={values.computer}
        getOptionLabel={(options) => options.name}
        sx={{ width: 240, position: 'absolute', left: '30%', top: '20%' }}
        options={computerArrFiltered}
-       renderInput={(params) => <TextField name='type' {...params} label="Computers Available" />}
+       renderInput={(params) => <TextField name='Name' {...params} label="Computers Available" />}
       />
 
       <Autocomplete
-       onChange={(e, v) => {
-        values.user = v
-        console.log("users", v)
-       }}
+       onChange={(e, v) => values.user = v}
        getOptionLabel={(options) => options.name}
+       defaultValue={values.user}
        sx={{ width: 240, position: 'absolute', left: '30%', top: '35%' }}
        options={userArr}
-       renderInput={(params) => <TextField name='type' {...params} label="User" />}
+       renderInput={(params) => <TextField name='Name' {...params} label="User" />}
       />
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
