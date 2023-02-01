@@ -6,11 +6,11 @@
 }
 
 .datePicker{
- width: 240;
  position: absolute;
- left: 90vh;
- top: -10vh;
+ top: 40%;
+ left: 45%;
 }
+
 
 .datePickerInEditForm{
  position: absolute;

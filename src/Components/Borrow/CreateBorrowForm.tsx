@@ -124,29 +124,30 @@ export default function BorrowForm() {
                 options={userArr}
                 renderInput={(params) => <TextField name='type' {...params} label="User" />}
               />
+              <Box className="datePicker" component="div">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="From Date"
+                    value={values.fromDate}
+                    inputFormat="DD/MM/YYYY"
+                    onChange={(e) => handleFromDateChange(e)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
 
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="From Date"
-                  value={values.fromDate}
-                  inputFormat="DD/MM/YYYY"
-                  className='datePicker'
-                  onChange={(e) => handleFromDateChange(e)}
-                  renderInput={(params) => <TextField {...params} />}
-                />
+                  <DesktopDatePicker
+                    label="To Date"
+                    value={values.toDate}
+                    inputFormat="DD/MM/YYYY"
+                    onChange={(e) => handleToDateChange(e)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </Box>
 
-                <DesktopDatePicker
-                  label="To Date"
-                  value={values.toDate}
-                  inputFormat="DD/MM/YYYY"
-                  className='datePicker'
-                  onChange={(e) => handleToDateChange(e)}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
 
             </Box>
-            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+            
+            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '50%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
       </Formik>
