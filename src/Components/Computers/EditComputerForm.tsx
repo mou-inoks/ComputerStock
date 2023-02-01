@@ -19,21 +19,21 @@ const EditComputerForm = (value: EditComputerProps) => {
  const [processorArr, setProcessorArr] = useState<Processor[]>([])
 
  const FetchFeedAllArrays = () => {
-  axios.get('https://localhost:7107/api/state').then(res => {
+  axios.get('https://localhost:7107/api/computer-state').then(res => {
     console.log(res)
     setStateArr(res.data)
   }).catch(err => {
     console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/type').then(res => {
+  axios.get('https://localhost:7107/api/computer-type').then(res => {
     console.log(res)
     setTypeArr(res.data)
   }).catch(err => {
     console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/processors').then(res => {
+  axios.get('https://localhost:7107/api/processor').then(res => {
     console.log(res)
     setProcessorArr(res.data)
   }).catch(err => {
