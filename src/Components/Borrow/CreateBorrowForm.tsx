@@ -73,7 +73,7 @@ export default function BorrowForm() {
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
               setSubmitting(true)
-              
+
               console.log(response)
             })
             .catch(function (error) {
@@ -82,16 +82,16 @@ export default function BorrowForm() {
 
         }}
       >
-        {({ values, handleChange }) => {
+        {({ values }) => {
 
           const handleFromDateChange = (v: Date | null) => {
 
             setFromDate(v ?? new Date())
-
+            values.fromDate = v!
           }
           const handleToDateChange = (v: Date | null) => {
             setToDate(v ?? new Date())
-
+            values.toDate = v!
           }
 
           return <Form>
