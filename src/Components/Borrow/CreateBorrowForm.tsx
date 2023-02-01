@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { Borrow, Computer, User } from '../Computers/ComputerQuerys'
+import { BorrowDto, ComputerDto, UserDto } from '../Dtos'
 import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,9 +11,9 @@ import moment from 'moment'
 
 export default function BorrowForm() {
 
-  const [userArr, setUserArr] = useState<User[]>([])
+  const [userArr, setUserArr] = useState<UserDto[]>([])
 
-  const [computersArr, setComputerArr] = useState<Computer[]>([])
+  const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
   const [fromDate, setFromDate] = useState<Date>(new Date())
 
@@ -50,7 +50,7 @@ export default function BorrowForm() {
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '50%', top: '10%', color: '#bd5457' }} className='h1'>New Borrow</Typography>
-      <Formik<Borrow>
+      <Formik<BorrowDto>
         initialValues={{
           id: 0,
           fromDate: fromDate,
@@ -59,12 +59,12 @@ export default function BorrowForm() {
           computer: null
         }}
         onSubmit={(
-          values: Borrow,
-          { setSubmitting }: FormikHelpers<Borrow>
+          values: BorrowDto,
+          { setSubmitting }: FormikHelpers<BorrowDto>
         ) => {
           console.log(values)
 
-          let param: Borrow = {
+          let param: BorrowDto = {
             ...values,
             fromDate: moment(values.fromDate).startOf('day').utc(true).toDate(),
             toDate: moment(values.toDate).startOf('day').utc(true).toDate()

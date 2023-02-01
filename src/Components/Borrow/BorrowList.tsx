@@ -7,18 +7,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Borrow, User } from '../Computers/ComputerQuerys';
+import { BorrowDto, UserDto } from '../Dtos';
 import EditUserForm from '../Users/EditUsersForm';
 import EditBorrowForm from './EditBorrow';
 import moment from 'moment';
 
 const BorrowList = () => {
 
- const [borrow, setBorrow] = useState<Array<Borrow>>([])
+ const [borrow, setBorrow] = useState<Array<BorrowDto>>([])
 
  const [open, setOpen] = useState(false);
 
- const [tempBorrow, setTempBorrow] = useState<Borrow>();
+ const [tempBorrow, setTempBorrow] = useState<BorrowDto>();
 
  const GetAllStates = () => {
   axios.get('https://localhost:7107/api/borrow').then(res => {
@@ -26,7 +26,7 @@ const BorrowList = () => {
   })
  }
 
- const handleOpen = (v: Borrow) => {
+ const handleOpen = (v: BorrowDto) => {
   setTempBorrow(v)
   setOpen(true);
 

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { Computer, ComputerType, Processor, State } from '../Computers/ComputerQuerys'
+import { ComputerDto, ComputerTypeDto, ProcessorDto, StateDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
-const EditProcessorForm = (processor: Processor) => {
+const EditProcessorForm = (processor: ProcessorDto) => {
 
 
  return (<div>
-  <Formik<Processor>
+  <Formik<ProcessorDto>
    initialValues={{
     id: processor.id,
     name: processor.name,
@@ -18,8 +18,8 @@ const EditProcessorForm = (processor: Processor) => {
     vitesse: processor.vitesse
    }}
    onSubmit={(
-    values: Processor,
-    { setSubmitting }: FormikHelpers<Processor>
+    values: ProcessorDto,
+    { setSubmitting }: FormikHelpers<ProcessorDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     axios.post('https://localhost:7107/api/processor/update', values).then(() => alert("Computer Sucessfully modified"))

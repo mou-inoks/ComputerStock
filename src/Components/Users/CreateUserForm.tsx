@@ -2,21 +2,21 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import React from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { User } from '../Computers/ComputerQuerys'
+import { UserDto } from '../Dtos'
 
 
 const CreateUserForm = () => {
  return (
   <div>
    <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '50%', top: '10%', color: '#bd5457' }} className='h1'>Create a User</Typography>
-   <Formik<User>
+   <Formik<UserDto>
     initialValues={{
      id: 0,
      name: '',
     }}
     onSubmit={(
-     values: User,
-     { setSubmitting }: FormikHelpers<User>
+     values: UserDto,
+     { setSubmitting }: FormikHelpers<UserDto>
     ) => {
      console.log(values)
      axios.post('https://localhost:7107/api/user', {

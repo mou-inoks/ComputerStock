@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Computer } from './ComputerQuerys'
+import { ComputerDto } from '../Dtos'
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,7 +17,7 @@ export type ListComputersProps = {
 }
 const ListComputers = (props: ListComputersProps) => {
 
-  const [computers, setComputers] = useState<Array<Computer>>([])
+  const [computers, setComputers] = useState<Array<ComputerDto>>([])
 
   const Listfiltered = computers.filter((e) => {
     if (props.isOnlyFreeChecked) {
@@ -33,7 +33,7 @@ const ListComputers = (props: ListComputersProps) => {
 
   const [detailsOpen, setDetailsOpen] = useState(false);
 
-  const [tempComputer, setTempComputer] = useState<Computer>();
+  const [tempComputer, setTempComputer] = useState<ComputerDto>();
 
   const GetAllComputers = () => {
     axios.get('https://localhost:7107/api/computer-stock').then(res => {
@@ -42,13 +42,13 @@ const ListComputers = (props: ListComputersProps) => {
     })
   }
 
-  const handleOpen = (v: Computer) => {
+  const handleOpen = (v: ComputerDto) => {
     setTempComputer(v)
     setOpen(true);
 
   };
 
-  const handleOpenDetails = (v: Computer) => {
+  const handleOpenDetails = (v: ComputerDto) => {
     setTempComputer(v)
     setDetailsOpen(true);
   }

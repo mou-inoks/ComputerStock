@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { Borrow, Computer, State, User } from '../Computers/ComputerQuerys'
+import { BorrowDto, ComputerDto, StateDto, UserDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import Autocomplete from '@mui/material/Autocomplete/Autocomplete'
@@ -9,20 +9,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 
 export interface BorrowPorps {
- borrow: Borrow
+ borrow: BorrowDto
 }
 
 const EditBorrowForm = (props: BorrowPorps) => {
 
- const [userArr, setUserArr] = useState<User[]>([])
+ const [userArr, setUserArr] = useState<UserDto[]>([])
 
- const [computersArr, setComputerArr] = useState<Computer[]>([])
+ const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
  const [fromDate, setFromDate] = useState<Date>(props.borrow.fromDate)
 
  const [toDate, setToDate] = useState<Date>(props.borrow.toDate)
 
- const [stateArr, SetStateArr] = useState<State[]>([])
+ const [stateArr, SetStateArr] = useState<StateDto[]>([])
 
  const handleFromDateChange = (v: Date | null) => {
 
@@ -71,7 +71,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
 
  return (<div>
-  <Formik<Borrow>
+  <Formik<BorrowDto>
    initialValues={{
     id: props.borrow.id,
     computer: props.borrow.computer,
@@ -80,8 +80,8 @@ const EditBorrowForm = (props: BorrowPorps) => {
     toDate: props.borrow.toDate
    }}
    onSubmit={(
-    values: Borrow,
-    { setSubmitting }: FormikHelpers<Borrow>
+    values: BorrowDto,
+    { setSubmitting }: FormikHelpers<BorrowDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     axios.post('https://localhost:7107/api/user/update', values).then(() => alert("Borrow Sucessfully modified")).then(() => setSubmitting(true))

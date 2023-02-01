@@ -1,9 +1,9 @@
 import React from 'react'
-import { Computer } from './ComputerQuerys'
+import { ComputerDto } from '../Dtos'
 import '../../css/Details.css'
 
 interface DetailsComputerProps {
- computer: Computer
+ computer: ComputerDto
 }
 
 const DetailsComputer = (value: DetailsComputerProps) => {

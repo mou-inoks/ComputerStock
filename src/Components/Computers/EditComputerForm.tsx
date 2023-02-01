@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { Computer, ComputerType, Processor, State } from './ComputerQuerys'
+import { ComputerDto, ComputerTypeDto, ProcessorDto, StateDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
 interface EditComputerProps {
- computer: Computer
+ computer: ComputerDto
 }
 
 const EditComputerForm = (value: EditComputerProps) => {
 
- const [stateArr, setStateArr] = useState<State[]>([])
+ const [stateArr, setStateArr] = useState<StateDto[]>([])
 
- const [typeArr, setTypeArr] = useState<ComputerType[]>([])
+ const [typeArr, setTypeArr] = useState<ComputerTypeDto[]>([])
 
- const [processorArr, setProcessorArr] = useState<Processor[]>([])
+ const [processorArr, setProcessorArr] = useState<ProcessorDto[]>([])
 
  const FetchFeedAllArrays = () => {
   axios.get('https://localhost:7107/api/computer-state').then(res => {
@@ -46,7 +46,7 @@ const EditComputerForm = (value: EditComputerProps) => {
  }, [])
 
  return (<div>
-  <Formik<Computer>
+  <Formik<ComputerDto>
    initialValues={{
     id: value.computer.id,
     name: value.computer.name,
@@ -58,8 +58,8 @@ const EditComputerForm = (value: EditComputerProps) => {
     comment: value.computer.comment
    }}
    onSubmit={(
-    values: Computer,
-    { setSubmitting }: FormikHelpers<Computer>
+    values: ComputerDto,
+    { setSubmitting }: FormikHelpers<ComputerDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     axios.post('https://localhost:7107/api/computer-stock/update', values).then(()=> alert("Computer Sucessfully modified"))

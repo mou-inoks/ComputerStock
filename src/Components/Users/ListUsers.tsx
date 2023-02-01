@@ -7,16 +7,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { User } from '../Computers/ComputerQuerys';
+import { UserDto } from '../Dtos';
 import EditUserForm from './EditUsersForm';
 
 const ListUsers = () => {
 
-  const [Users, setUsers] = useState<Array<User>>([])
+  const [Users, setUsers] = useState<Array<UserDto>>([])
 
   const [open, setOpen] = useState(false);
   
-  const [tempUser, setUser] = useState<User>();
+  const [tempUser, setUser] = useState<UserDto>();
 
   const GetAllUsers = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
@@ -24,7 +24,7 @@ const ListUsers = () => {
     })
   }
 
-  const handleOpen = (v: User) => {
+  const handleOpen = (v: UserDto) => {
     setUser(v)
     setOpen(true);
 

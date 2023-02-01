@@ -1,20 +1,20 @@
 import React from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { State } from '../Computers/ComputerQuerys'
+import { StateDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
-const EditComputerStateForm = (state: State) => {
+const EditComputerStateForm = (state: StateDto) => {
  return (<div>
-  <Formik<State>
+  <Formik<StateDto>
    initialValues={{
     id: state.id,
     state: state.state
    }}
    onSubmit={(
-    values: State,
-    { setSubmitting }: FormikHelpers<State>
+    values: StateDto,
+    { setSubmitting }: FormikHelpers<StateDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     axios.post('https://localhost:7107/api/computer-state/update', values).then(()=> alert("Computer Sucessfully modified"))

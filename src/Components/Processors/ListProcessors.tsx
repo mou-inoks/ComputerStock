@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Computer, Processor } from '../Computers/ComputerQuerys'
+import { ComputerDto, ProcessorDto } from '../Dtos'
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,11 +13,11 @@ import EditProcessorForm from './EditProcessorForm';
 
 const ListProcessors = () => {
 
- const [processors, setProcessors] = useState<Array<Processor>>([])
+ const [processors, setProcessors] = useState<Array<ProcessorDto>>([])
 
  const [open, setOpen] = useState(false);
 
- const [tempProcessors, setTempProcessors] = useState<Processor>();
+ const [tempProcessors, setTempProcessors] = useState<ProcessorDto>();
 
  const GetAllProcessors = () => {
   axios.get('https://localhost:7107/api/processor').then(res => {
@@ -25,7 +25,7 @@ const ListProcessors = () => {
   })
  }
 
- const handleOpen = (v: Processor) => {
+ const handleOpen = (v: ProcessorDto) => {
   setTempProcessors(v)
   setOpen(true);
 

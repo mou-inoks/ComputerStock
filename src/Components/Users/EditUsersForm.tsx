@@ -1,20 +1,20 @@
 import React from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import {  User } from '../Computers/ComputerQuerys'
+import {  UserDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
 
-const EditUserForm = (user: User) => {
+const EditUserForm = (user: UserDto) => {
  return (<div>
-  <Formik<User>
+  <Formik<UserDto>
    initialValues={{
     id: user.id,
     name: user.name
    }}
    onSubmit={(
-    values: User,
-    { setSubmitting }: FormikHelpers<User>
+    values: UserDto,
+    { setSubmitting }: FormikHelpers<UserDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     axios.post('https://localhost:7107/api/user/update', values).then(()=> alert("User Sucessfully modified")).then(() => setSubmitting(true))

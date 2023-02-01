@@ -2,14 +2,14 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { Processor } from '../Computers/ComputerQuerys'     
+import { ProcessorDto } from '../Dtos'     
 
 
 const CreateProcessorForm = () => {
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a Processor</Typography>
-      <Formik<Processor>
+      <Formik<ProcessorDto>
         initialValues={{
           id: 0,
           name: '',
@@ -17,8 +17,8 @@ const CreateProcessorForm = () => {
           vitesse: ''
         }}
         onSubmit={(
-          values: Processor,
-          { setSubmitting }: FormikHelpers<Processor>
+          values: ProcessorDto,
+          { setSubmitting }: FormikHelpers<ProcessorDto>
         ) => {
          axios.post('https://localhost:7107/api/processor', values).then(res => {
           setSubmitting(true)

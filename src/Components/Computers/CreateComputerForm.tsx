@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { Computer, Processor, State, ComputerType } from './ComputerQuerys'
+import { ComputerDto, ProcessorDto, StateDto, ComputerTypeDto } from '../Dtos'
 
 
 const CreateComputerForm = () => {
 
-  const [stateArr, setStateArr] = useState<State[]>([])
+  const [stateArr, setStateArr] = useState<StateDto[]>([])
 
-  const [typeArr, setTypeArr] = useState<ComputerType[]>([])
+  const [typeArr, setTypeArr] = useState<ComputerTypeDto[]>([])
 
-  const [processorArr, setProcessorArr] = useState<Processor[]>([])
+  const [processorArr, setProcessorArr] = useState<ProcessorDto[]>([])
 
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/computer-state').then(res => {
@@ -45,7 +45,7 @@ const CreateComputerForm = () => {
   return (
     <div>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '40px', position: 'absolute', left: '45%', top: '10%', color: '#bd5457' }} className='h1'>Create a computer</Typography>
-      <Formik<Computer>
+      <Formik<ComputerDto>
         initialValues={{
           id: 0,
           name: '',
@@ -57,8 +57,8 @@ const CreateComputerForm = () => {
           comment: ''
         }}
         onSubmit={(
-          values: Computer,
-          { setSubmitting }: FormikHelpers<Computer>
+          values: ComputerDto,
+          { setSubmitting }: FormikHelpers<ComputerDto>
         ) => {
           console.log(values)
           axios.post('https://localhost:7107/api/computer-stock', {

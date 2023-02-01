@@ -7,16 +7,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { State } from '../Computers/ComputerQuerys';
+import { StateDto } from '../Dtos';
 import EditComputerStateForm from './EditComputerStateForm';
 
 const ListState = () => {
 
-  const [computersState, setComputersStates] = useState<Array<State>>([])
+  const [computersState, setComputersStates] = useState<Array<StateDto>>([])
 
   const [open, setOpen] = useState(false);
   
-  const [tempComputerState, setTempComputerState] = useState<State>();
+  const [tempComputerState, setTempComputerState] = useState<StateDto>();
 
   const GetAllStates = () => {
     axios.get('https://localhost:7107/api/computer-state').then(res => {
@@ -24,7 +24,7 @@ const ListState = () => {
     })
   }
 
-  const handleOpen = (v: State) => {
+  const handleOpen = (v: StateDto) => {
     setTempComputerState(v)
     setOpen(true);
 
