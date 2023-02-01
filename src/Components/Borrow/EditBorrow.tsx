@@ -84,7 +84,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
     { setSubmitting }: FormikHelpers<Borrow>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/computer-stock/user/update', values).then(() => alert("Borrow Sucessfully modified")).then(() => setSubmitting(true))
+    axios.post('https://localhost:7107/api/user/update', values).then(() => alert("Borrow Sucessfully modified")).then(() => setSubmitting(true))
    }}
   >
    {({ values }) => {
@@ -121,7 +121,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
        defaultValue={values.computer?.state}
        sx={{ width: 240, position: 'absolute', left: '30%', top: '50%' }}
        options={stateArr}
-       renderInput={(params) => <TextField {...params} name='state' label="Computer State" />}
+       renderInput={(params) => <TextField {...params} name='state' label="Computer state" />}
       />
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>

@@ -21,7 +21,7 @@ const BorrowList = () => {
  const [tempBorrow, setTempBorrow] = useState<Borrow>();
 
  const GetAllStates = () => {
-  axios.get('https://localhost:7107/api/computer-stock/borrow').then(res => {
+  axios.get('https://localhost:7107/api/borrow').then(res => {
    setBorrow(res.data)
   })
  }
@@ -91,7 +91,7 @@ const BorrowList = () => {
           </Modal>
           <button className='actions' onClick={() => {
            console.log("Computer to delete", tempBorrow)
-           axios.delete('https://localhost:7107/api/computer-stock/borrow/ ' + borrow.id).then(() => {
+           axios.delete('https://localhost:7107/api/borrow/ ' + borrow.id).then(() => {
             GetAllStates()
            })
           }}><DeleteIcon /></button>

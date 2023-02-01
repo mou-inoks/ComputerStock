@@ -19,7 +19,7 @@ const CreateUserForm = () => {
      { setSubmitting }: FormikHelpers<User>
     ) => {
      console.log(values)
-     axios.post('https://localhost:7107/api/computer-stock/user', {
+     axios.post('https://localhost:7107/api/user', {
       name: values.name,
      })
       .then(function (response) {

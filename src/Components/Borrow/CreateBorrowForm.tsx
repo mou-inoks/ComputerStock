@@ -20,7 +20,7 @@ export default function BorrowForm() {
   const [toDate, setToDate] = useState<Date>(new Date())
 
   const FetchFeedAllArrays = () => {
-    axios.get('https://localhost:7107/api/computer-stock/user').then(res => {
+    axios.get('https://localhost:7107/api/user').then(res => {
       console.log(res)
       setUserArr(res.data)
     }).catch(err => {
@@ -69,7 +69,7 @@ export default function BorrowForm() {
             fromDate: moment(values.fromDate).startOf('day').utc(true).toDate(),
             toDate: moment(values.toDate).startOf('day').utc(true).toDate()
           }
-          axios.post('https://localhost:7107/api/computer-stock/borrow', param)
+          axios.post('https://localhost:7107/api/borrow', param)
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
               setSubmitting(true)

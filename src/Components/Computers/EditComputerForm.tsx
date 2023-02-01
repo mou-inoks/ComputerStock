@@ -19,27 +19,27 @@ const EditComputerForm = (value: EditComputerProps) => {
  const [processorArr, setProcessorArr] = useState<Processor[]>([])
 
  const FetchFeedAllArrays = () => {
-  axios.get('https://localhost:7107/api/computer-stock/state').then(res => {
-   console.log(res)
-   setStateArr(res.data)
+  axios.get('https://localhost:7107/api/state').then(res => {
+    console.log(res)
+    setStateArr(res.data)
   }).catch(err => {
-   console.log(err)
+    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/computer-stock/type').then(res => {
-   console.log(res)
-   setTypeArr(res.data)
+  axios.get('https://localhost:7107/api/type').then(res => {
+    console.log(res)
+    setTypeArr(res.data)
   }).catch(err => {
-   console.log(err)
+    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/computer-stock/processors').then(res => {
-   console.log(res)
-   setProcessorArr(res.data)
+  axios.get('https://localhost:7107/api/processors').then(res => {
+    console.log(res)
+    setProcessorArr(res.data)
   }).catch(err => {
-   console.log(err)
+    console.log(err)
   })
- }
+}
 
  useEffect(() => {
   FetchFeedAllArrays()

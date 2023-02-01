@@ -18,8 +18,8 @@ const ListUsers = () => {
   
   const [tempUser, setUser] = useState<User>();
 
-  const GetAllStates = () => {
-    axios.get('https://localhost:7107/api/computer-stock/user').then(res => {
+  const GetAllUsers = () => {
+    axios.get('https://localhost:7107/api/user').then(res => {
       setUsers(res.data)
     })
   }
@@ -31,11 +31,11 @@ const ListUsers = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    GetAllStates()
+    GetAllUsers()
   };
 
   useEffect(() => {
-    GetAllStates()
+    GetAllUsers()
   }, [])
 
   const modalStyle = {
@@ -58,7 +58,7 @@ const ListUsers = () => {
       <tbody>
         <tr className='table-header'>
           <th className='header__item'>
-            <a href='create-state'><AddCircleIcon /></a>
+            <a href='create-users'><AddCircleIcon /></a>
             Action
           </th>
           <th className='header__item'>Name</th> 
@@ -88,8 +88,8 @@ const ListUsers = () => {
                     </Modal>
                     <button className='actions' onClick={() => {
                       console.log("Computer to delete", tempUser)
-                      axios.delete('https://localhost:7107/api/computer-stock/state/ ' + user.id).then(() => {
-                        GetAllStates()
+                      axios.delete('https://localhost:7107/api/user/ ' + user.id).then(() => {
+                        GetAllUsers()
                       })
                     }}><DeleteIcon /></button>
                   </td>
