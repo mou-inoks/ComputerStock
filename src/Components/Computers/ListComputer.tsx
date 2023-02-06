@@ -141,7 +141,6 @@ const ListComputers = (props: ListComputersProps) => {
                   <td className='table-data'>{computer.state?.state}</td>
                   <td className='table-data'>{computer.comment}</td>
                 </div>
-
               </>
             )
           })}

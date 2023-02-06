@@ -36,7 +36,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
 
  const FetchFeedAllArrays = () => {
-  axios.get('https://localhost:7107/api/computer-stock/user').then(res => {
+  axios.get('https://localhost:7107/api/user').then(res => {
    console.log(res)
    setUserArr(res.data)
   }).catch(err => {
@@ -50,7 +50,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
    console.log(err)
   })
 
-  axios.get('https://localhost:7107/api/computer-stock/state').then(res => {
+  axios.get('https://localhost:7107/api/computer-state').then(res => {
    console.log(res)
    SetStateArr(res.data)
   }).catch(err => {
@@ -69,6 +69,10 @@ const EditBorrowForm = (props: BorrowPorps) => {
   FetchFeedAllArrays()
  }, [])
 
+ const SubmitNewState = (computer: ComputerDto) => {
+  axios.post('https://localhost:7107/api/computer-stock/update', computer).then(() => alert("Borrow Sucessfully modified"))
+ }
+
 
  return (<div>
   <Formik<BorrowDto>
@@ -84,7 +88,9 @@ const EditBorrowForm = (props: BorrowPorps) => {
     { setSubmitting }: FormikHelpers<BorrowDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/user/update', values).then(() => alert("Borrow Sucessfully modified")).then(() => setSubmitting(true))
+    axios.post('https://localhost:7107/api/user/update', values)
+    .then(() => alert("Borrow Sucessfully modified"))
+    .then(() => setSubmitting(true))
    }}
   >
    {({ values }) => {
@@ -146,7 +152,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
 
      </Box>
-     <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
+     <Button onClick={() => SubmitNewState(values.computer!)} type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
     </Form>
    }}
   </Formik>
