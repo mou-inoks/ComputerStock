@@ -12,13 +12,28 @@ import EditUserForm from '../Users/EditUsersForm';
 import EditBorrowForm from './EditBorrow';
 import moment from 'moment';
 
-const BorrowList = () => {
+export type BorrowListProps = {
+ stillInBorrow: boolean
+}
+
+const BorrowList = (props: BorrowListProps) => {
 
  const [borrow, setBorrow] = useState<Array<BorrowDto>>([])
 
  const [open, setOpen] = useState(false);
 
  const [tempBorrow, setTempBorrow] = useState<BorrowDto>();
+
+
+ const Listfiltered = borrow.filter((e) => {
+  if (props.stillInBorrow) {
+    if (e.toDate == null) {
+      return e
+    }
+    else return null
+  }
+  else return borrow
+})
 
  const GetAllStates = () => {
   axios.get('https://localhost:7107/api/borrow').then(res => {
@@ -39,6 +54,13 @@ const BorrowList = () => {
  useEffect(() => {
   GetAllStates()
  }, [])
+
+ const AfficherDate = (toDate: Date | null) => {
+  if(toDate == null)
+   return "Still In borrow"
+  else 
+   return moment(toDate).format('MMM Do YY')
+ }
 
  const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -69,7 +91,7 @@ const BorrowList = () => {
      <th className='header__item'>State</th>
     </tr>
     <tr>
-     {borrow.map((borrow) => {
+     {Listfiltered.map((borrow) => {
       return (
        <>
         <div className='table-row'>
@@ -99,7 +121,7 @@ const BorrowList = () => {
          <td className='table-data'>{borrow.computer?.name}</td>
          <td className='table-data'>{borrow.user?.name}</td>
          <td className='table-data'>{moment(borrow.fromDate).format('MMM Do YY')}</td>
-         <td className='table-data'>{moment(borrow.toDate).format('MMM Do YY')}</td>
+         <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
          <td className='table-data'>{borrow.computer?.state?.state}</td>
         </div>
 
