@@ -17,3 +17,12 @@
  top:300px;
  left: 10%;
 }
+.container {
+display: flex;
+align-items: center;
+flex-direction: column;
+margin-top: 3rem;
+}
+.details {
+ margin-top: 10px;
+}
