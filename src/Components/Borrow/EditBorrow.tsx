@@ -18,22 +18,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
  const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
- const [fromDate, setFromDate] = useState<Date>(props.borrow.fromDate)
-
- const [toDate, setToDate] = useState<Date>(props.borrow.toDate)
-
  const [stateArr, SetStateArr] = useState<StateDto[]>([])
-
- const handleFromDateChange = (v: Date | null) => {
-
-  setFromDate(v ?? new Date())
-
- }
- const handleToDateChange = (v: Date | null) => {
-  setToDate(v ?? new Date())
-
- }
-
 
  const FetchFeedAllArrays = () => {
   axios.get('https://localhost:7107/api/user').then(res => {
@@ -73,7 +58,6 @@ const EditBorrowForm = (props: BorrowPorps) => {
   axios.post('https://localhost:7107/api/computer-stock/update', computer).then(() => alert("Borrow Sucessfully modified"))
  }
 
-
  return (<div>
   <Formik<BorrowDto>
    initialValues={{
@@ -93,7 +77,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
     .then(() => setSubmitting(true))
    }}
   >
-   {({ values }) => {
+   {({ values, setFieldValue }) => {
     return <Form>
      <Box
       component="form"
@@ -136,7 +120,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
         value={values.fromDate}
         inputFormat="DD/MM/YYYY"
         className='datePickerInEditForm'
-        onChange={(e) => handleFromDateChange(e)}
+        onChange={(e) => setFieldValue('fromDate',e ?? new Date())}
         renderInput={(params) => <TextField {...params} />}
        />
 
@@ -145,7 +129,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
         value={values.toDate}
         inputFormat="DD/MM/YYYY"
         className='datePickerInEditForm'
-        onChange={(e) => handleToDateChange(e)}
+        onChange={(e) => setFieldValue('toDate', e ?? new Date())}
         renderInput={(params) => <TextField {...params} />}
        />
       </LocalizationProvider>

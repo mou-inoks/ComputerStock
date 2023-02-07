@@ -24,7 +24,7 @@ export interface UserDto{
 export interface BorrowDto {
  id: number,
  fromDate: Date, 
- toDate: Date
+ toDate: Date | null,
  user: UserDto | null, 
  computer: ComputerDto | null
 }

@@ -7,18 +7,13 @@ import { BorrowDto, ComputerDto, UserDto } from '../Dtos'
 import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import moment from 'moment'
 
 export default function BorrowForm() {
 
   const [userArr, setUserArr] = useState<UserDto[]>([])
 
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
-
-  const [fromDate, setFromDate] = useState<Date>(new Date())
-
-  const [toDate, setToDate] = useState<Date>(new Date())
-
+  
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
       console.log(res)
@@ -36,7 +31,7 @@ export default function BorrowForm() {
   }
 
   const computerArrFiltered = computersArr.filter((e) => {
-    if (e.state?.state == "In Stock") {
+    if (e.state?.state === "In Stock") {
       return e
     }
     else return null
@@ -53,8 +48,8 @@ export default function BorrowForm() {
       <Formik<BorrowDto>
         initialValues={{
           id: 0,
-          fromDate: fromDate,
-          toDate: toDate,
+          fromDate: new Date(),
+          toDate: new Date(),
           user: null,
           computer: null
         }}
@@ -62,18 +57,11 @@ export default function BorrowForm() {
           values: BorrowDto,
           { setSubmitting }: FormikHelpers<BorrowDto>
         ) => {
-          console.log(values)
 
-          let param: BorrowDto = {
-            ...values,
-            fromDate: moment(values.fromDate).startOf('day').utc(true).toDate(),
-            toDate: moment(values.toDate).startOf('day').utc(true).toDate()
-          }
-          axios.post('https://localhost:7107/api/borrow', param)
+          axios.post('https://localhost:7107/api/borrow', values)
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
               setSubmitting(true)
-
               console.log(response)
             })
             .catch(function (error) {
@@ -82,17 +70,7 @@ export default function BorrowForm() {
 
         }}
       >
-        {({ values }) => {
-
-          const handleFromDateChange = (v: Date | null) => {
-
-            setFromDate(v ?? new Date())
-            values.fromDate = v!
-          }
-          const handleToDateChange = (v: Date | null) => {
-            setToDate(v ?? new Date())
-            values.toDate = v!
-          }
+        {({ values, setFieldValue }) => {
 
           return <Form>
             <Box
@@ -130,7 +108,7 @@ export default function BorrowForm() {
                     label="From Date"
                     value={values.fromDate}
                     inputFormat="DD/MM/YYYY"
-                    onChange={(e) => handleFromDateChange(e)}
+                    onChange={(e) => setFieldValue('fromDate',e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
                   />
 
@@ -138,15 +116,12 @@ export default function BorrowForm() {
                     label="To Date"
                     value={values.toDate}
                     inputFormat="DD/MM/YYYY"
-                    onChange={(e) => handleToDateChange(e)}
+                    onChange={(e) => setFieldValue('toDate',e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>
-
-
             </Box>
-            
             <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '50%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
