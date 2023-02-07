@@ -42,9 +42,11 @@ const EditBorrowForm = (props: BorrowPorps) => {
    console.log(err)
   })
  }
+ console.log(computersArr)
 
  const computerArrFiltered = computersArr.filter((e) => {
-  if (e.state?.state != "In Stock") {
+  console.log('currentComputer',e)
+  if (e.state?.state == "In Stock") {
    return e
   }
   else return null
@@ -72,9 +74,9 @@ const EditBorrowForm = (props: BorrowPorps) => {
     { setSubmitting }: FormikHelpers<BorrowDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
-    axios.post('https://localhost:7107/api/user/update', values)
+    console.log(values)
+    axios.post('https://localhost:7107/api/borrow/update', values)
     .then(() => alert("Borrow Sucessfully modified"))
-    .then(() => setSubmitting(true))
    }}
   >
    {({ values, setFieldValue }) => {
@@ -136,7 +138,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
 
      </Box>
-     <Button onClick={() => SubmitNewState(values.computer!)} type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
+     <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
     </Form>
    }}
   </Formik>
