@@ -19,16 +19,6 @@ const ListComputers = (props: ListComputersProps) => {
 
   const [computers, setComputers] = useState<Array<ComputerDto>>([])
 
-  const Listfiltered = computers.filter((e) => {
-    if (props.isOnlyFreeChecked) {
-      if (e.state?.state == "In Stock") {
-        return e
-      }
-      else return null
-    }
-    else return computers
-  })
-
   const [open, setOpen] = useState(false);
 
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -91,10 +81,9 @@ const ListComputers = (props: ListComputersProps) => {
           <th className='header__item'>Processor</th>
           <th className='header__item'>Ram</th>
           <th className='header__item'>State</th>
-          <th className='header__item'>Comment</th>
         </tr>
         <tr>
-          {Listfiltered.map((computer) => {
+          {computers.map((computer) => {
             return (
               <>
                 <div className='table-row'>
@@ -139,7 +128,6 @@ const ListComputers = (props: ListComputersProps) => {
                   <td className='table-data'>{computer.processor?.niveau}</td>
                   <td className='table-data'>{computer.ram}</td>
                   <td className='table-data'>{computer.state?.state}</td>
-                  <td className='table-data'>{computer.comment}</td>
                 </div>
               </>
             )

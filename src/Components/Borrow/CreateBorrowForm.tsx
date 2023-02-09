@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { BorrowDto, ComputerDto, UserDto } from '../Dtos'
+import { BorrowDto, ComputerDto, PurposeDto, UserDto } from '../Dtos'
 import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,29 +13,30 @@ export default function BorrowForm() {
   const [userArr, setUserArr] = useState<UserDto[]>([])
 
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
-  
+  const [purposeArr, setPurposeArr] = useState<PurposeDto[]>([])
+
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
-      console.log(res)
       setUserArr(res.data)
+      console.log("users",res)
     }).catch(err => {
       console.log(err)
     })
 
     axios.get('https://localhost:7107/api/computer-stock').then(res => {
+      console.log("computers",res)
+      setComputerArr(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('https://localhost:7107/api/purpose').then(res => {
       console.log(res)
       setComputerArr(res.data)
     }).catch(err => {
       console.log(err)
     })
   }
-
-  const computerArrFiltered = computersArr.filter((e) => {
-    if (e.state?.state === "In Stock") {
-      return e
-    }
-    else return null
-  })
 
   useEffect(() => {
     FetchFeedAllArrays()
@@ -51,7 +52,9 @@ export default function BorrowForm() {
           fromDate: new Date(),
           toDate: new Date(),
           user: null,
-          computer: null
+          computer: null,
+          comment: '',
+          purpose: null
         }}
         onSubmit={(
           values: BorrowDto,
@@ -70,7 +73,7 @@ export default function BorrowForm() {
 
         }}
       >
-        {({ values, setFieldValue }) => {
+        {({ values, setFieldValue, handleChange }) => {
 
           return <Form>
             <Box
@@ -88,8 +91,8 @@ export default function BorrowForm() {
                 }}
                 getOptionLabel={(options) => options.name}
                 sx={{ width: 240, position: 'absolute', left: '51%', top: '20%' }}
-                options={computerArrFiltered}
-                renderInput={(params) => <TextField name='type' {...params} label="Computers Available" />}
+                options={computersArr}
+                renderInput={(params) => <TextField name='name' {...params} label="Computers Available" />}
               />
 
               <Autocomplete
@@ -100,7 +103,7 @@ export default function BorrowForm() {
                 getOptionLabel={(options) => options.name}
                 sx={{ width: 240, position: 'absolute', left: '51%', top: '30%' }}
                 options={userArr}
-                renderInput={(params) => <TextField name='type' {...params} label="User" />}
+                renderInput={(params) => <TextField name='name' {...params} label="User" />}
               />
               <Box className="datePicker" component="div">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -108,7 +111,7 @@ export default function BorrowForm() {
                     label="From Date"
                     value={values.fromDate}
                     inputFormat="DD/MM/YYYY"
-                    onChange={(e) => setFieldValue('fromDate',e ?? new Date())}
+                    onChange={(e) => setFieldValue('fromDate', e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
                   />
 
@@ -116,13 +119,36 @@ export default function BorrowForm() {
                     label="To Date"
                     value={values.toDate}
                     inputFormat="DD/MM/YYYY"
-                    onChange={(e) => setFieldValue('toDate',e ?? new Date())}
+                    onChange={(e) => setFieldValue('toDate', e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>
+
+              <Autocomplete
+                onChange={(e, v) => {
+                  values.purpose = v
+                  console.log("purpose", v)
+                }}
+                getOptionLabel={(options) => options.purpose}
+                sx={{ width: 240, position: 'absolute', left: '51%', top: '30%' }}
+                options={purposeArr}
+                renderInput={(params) => <TextField name='purpose' {...params} label="User" />}
+              />
+
+              <TextField
+                onChange={handleChange}
+                name='comment'
+                sx={{ position: 'absolute', left: '50%', top: '50%' }}
+                required
+                multiline
+                rows={5}
+                maxRows={5}
+                id="comment"
+                label="Comment"
+              />
             </Box>
-            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '50%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
       </Formik>

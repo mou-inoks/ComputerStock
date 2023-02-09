@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { BorrowDto, ComputerDto, StateDto, UserDto } from '../Dtos'
+import { BorrowDto, ComputerDto, PurposeDto, StateDto, UserDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import Autocomplete from '@mui/material/Autocomplete/Autocomplete'
@@ -19,11 +19,19 @@ const EditBorrowForm = (props: BorrowPorps) => {
  const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
  const [stateArr, SetStateArr] = useState<StateDto[]>([])
+ const [purposeArr, setPurposeArr] = useState<PurposeDto[]>([])
 
  const FetchFeedAllArrays = () => {
   axios.get('https://localhost:7107/api/user').then(res => {
    console.log(res)
    setUserArr(res.data)
+  }).catch(err => {
+   console.log(err)
+  })
+
+  axios.get('https://localhost:7107/api/purpose').then(res => {
+   console.log(res)
+   setPurposeArr(res.data)
   }).catch(err => {
    console.log(err)
   })
@@ -67,7 +75,9 @@ const EditBorrowForm = (props: BorrowPorps) => {
     computer: props.borrow.computer,
     user: props.borrow.user,
     fromDate: props.borrow.fromDate,
-    toDate: props.borrow.toDate
+    toDate: props.borrow.toDate,
+    comment: props.borrow.comment, 
+    purpose: props.borrow.purpose
    }}
    onSubmit={(
     values: BorrowDto,
@@ -136,6 +146,14 @@ const EditBorrowForm = (props: BorrowPorps) => {
        />
       </LocalizationProvider>
 
+      <Autocomplete
+       onChange={(e, v) => values.purpose = v!}
+       defaultValue={values.purpose}
+       getOptionLabel={(options) => options.purpose}
+       sx={{ width: 240, position: 'absolute', left: '30%', top: '20%' }}
+       options={purposeArr}
+       renderInput={(params) => <TextField name='purpose' {...params} label="Purpose" />}
+      />
 
      </Box>
      <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
