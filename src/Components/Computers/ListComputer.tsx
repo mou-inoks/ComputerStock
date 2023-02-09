@@ -71,10 +71,7 @@ const ListComputers = (props: ListComputersProps) => {
     <table className='table'>
       <tbody>
         <tr className='table-header'>
-          <th className='header__item'>
-            <a href='create-computer'><AddCircleIcon /></a>
-            Action
-          </th>
+          <th className='header__item'>Action</th>
           <th className='header__item'>Name</th>
           <th className='header__item'>Type</th>
           <th className='header__item'>Brand</th>

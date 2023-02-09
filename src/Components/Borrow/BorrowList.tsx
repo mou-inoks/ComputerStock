@@ -13,127 +13,126 @@ import EditBorrowForm from './EditBorrow';
 import moment from 'moment';
 
 export type BorrowListProps = {
- stillInBorrow: boolean
+  stillInBorrow: boolean
 }
 
 const BorrowList = (props: BorrowListProps) => {
 
- const [borrow, setBorrow] = useState<Array<BorrowDto>>([])
+  const [borrow, setBorrow] = useState<Array<BorrowDto>>([])
 
- const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
- const [tempBorrow, setTempBorrow] = useState<BorrowDto>();
+  const [tempBorrow, setTempBorrow] = useState<BorrowDto>();
 
 
- const Listfiltered = borrow.filter((e) => {
-  if (props.stillInBorrow) {
-    if (e.toDate == null) {
-      return e
+  const Listfiltered = borrow.filter((e) => {
+    if (props.stillInBorrow) {
+      if (e.toDate == null) {
+        return e
+      }
+      else return null
     }
-    else return null
-  }
-  else return borrow
-})
-
- const GetAllStates = () => {
-  axios.get('https://localhost:7107/api/borrow').then(res => {
-   setBorrow(res.data)
+    else return borrow
   })
- }
 
- const handleOpen = (v: BorrowDto) => {
-  setTempBorrow(v)
-  setOpen(true);
+  const GetAllStates = () => {
+    axios.get('https://localhost:7107/api/borrow').then(res => {
+      setBorrow(res.data)
+    })
+  }
 
- };
- const handleClose = () => {
-  setOpen(false);
-  GetAllStates()
- };
+  const handleOpen = (v: BorrowDto) => {
+    setTempBorrow(v)
+    setOpen(true);
 
- useEffect(() => {
-  GetAllStates()
- }, [])
+  };
+  const handleClose = () => {
+    setOpen(false);
+    GetAllStates()
+  };
 
- const AfficherDate = (toDate: Date | null) => {
-  if(toDate == null)
-   return "Still In borrow"
-  else 
-   return moment(toDate).format('MMM Do YY')
- }
+  useEffect(() => {
+    GetAllStates()
+  }, [])
 
- const modalStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 300,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
- };
+  const AfficherDate = (toDate: Date | null) => {
+    if (toDate == null)
+      return "Still In borrow"
+    else
+      return moment(toDate).format('MMM Do YY')
+  }
 
- return (<>
-  <table className='table'>
-   <tbody>
-    <tr className='table-header'>
-     <th className='header__item'>
-      <a href='create-borrow'><AddCircleIcon /></a>
-      Action
-     </th>
-     <th className='header__item'>Computer</th>
-     <th className='header__item'>User</th>
-     <th className='header__item'>From Date</th>
-     <th className='header__item'>To Date</th>
-     <th className='header__item'>State</th>
-    </tr>
-    <tr>
-     {Listfiltered.map((borrow) => {
-      return (
-       <>
-        <div className='table-row'>
-         <td className='table-data'>
-          <button className='actions' onClick={() => handleOpen(borrow)}>
-           <EditIcon />
-          </button>
-          <Modal
-           open={open}
-           onClose={handleClose}
-           aria-labelledby="parent-modal-title"
-           aria-describedby="parent-modal-description"
-          >
-           <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color: 'white' }}>
-            <h1 style={{ position: 'relative', left: '5%' }}> {`${tempBorrow?.computer?.name} / ${tempBorrow?.user?.name} / ${moment(tempBorrow?.fromDate).format('MMM Do YY')} `}</h1>
-            <EditBorrowForm borrow={tempBorrow!}
-            />
-           </Box>
-          </Modal>
-          <button className='actions' onClick={() => {
-           console.log("Computer to delete", tempBorrow)
-           axios.delete('https://localhost:7107/api/borrow/ ' + borrow.id).then(() => {
-            GetAllStates()
-           })
-          }}><DeleteIcon /></button>
-         </td>
-         <td className='table-data'>{borrow.computer?.name}</td>
-         <td className='table-data'>{borrow.user?.name}</td>
-         <td className='table-data'>{moment(borrow.fromDate).format('MMM Do YY')}</td>
-         <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
-         <td className='table-data'>{borrow.computer?.state?.state}</td>
-        </div>
+  const modalStyle = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
 
-       </>
-      )
-     })}
-    </tr>
-   </tbody>
-  </table>
+  return (<>
+    <table className='table'>
+      <tbody>
+        <tr className='table-header'>
+          <th className='header__item'>Action</th>
+          <th className='header__item'>Computer</th>
+          <th className='header__item'>User</th>
+          <th className='header__item'>From Date</th>
+          <th className='header__item'>To Date</th>
+          <th className='header__item'>Purpose</th>
+          <th className='header__item'>Comment</th>
+        </tr>
+        <tr>
+          {Listfiltered.map((borrow) => {
+            return (
+              <>
+                <div className='table-row'>
+                  <td className='table-data'>
+                    <button className='actions' onClick={() => handleOpen(borrow)}>
+                      <EditIcon />
+                    </button>
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="parent-modal-title"
+                      aria-describedby="parent-modal-description"
+                    >
+                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color: 'white' }}>
+                        <h1 style={{ position: 'relative', left: '5%' }}> {`${tempBorrow?.computer?.name} / ${tempBorrow?.user?.name} / ${moment(tempBorrow?.fromDate).format('MMM Do YY')} `}</h1>
+                        <EditBorrowForm borrow={tempBorrow!}
+                        />
+                      </Box>
+                    </Modal>
+                    <button className='actions' onClick={() => {
+                      console.log("Computer to delete", tempBorrow)
+                      axios.delete('https://localhost:7107/api/borrow/ ' + borrow.id).then(() => {
+                        GetAllStates()
+                      })
+                    }}><DeleteIcon /></button>
+                  </td>
+                  <td className='table-data'>{borrow.computer?.name}</td>
+                  <td className='table-data'>{borrow.user?.name}</td>
+                  <td className='table-data'>{moment(borrow.fromDate).format('MMM Do YY')}</td>
+                  <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
+                  <td className='table-data'>{borrow.purpose?.purpose}</td>
+                  <td className='table-data'>{borrow.comment}</td>
+                </div>
 
- </>
- )
+              </>
+            )
+          })}
+        </tr>
+      </tbody>
+    </table>
+
+  </>
+  )
 }
 
 export default BorrowList

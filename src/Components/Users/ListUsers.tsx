@@ -58,7 +58,6 @@ const ListUsers = () => {
       <tbody>
         <tr className='table-header'>
           <th className='header__item'>
-            <a href='create-users'><AddCircleIcon /></a>
             Action
           </th>
           <th className='header__item'>Name</th> 

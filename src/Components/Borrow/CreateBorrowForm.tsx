@@ -18,13 +18,13 @@ export default function BorrowForm() {
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
       setUserArr(res.data)
-      console.log("users",res)
+      console.log("users", res)
     }).catch(err => {
       console.log(err)
     })
 
     axios.get('https://localhost:7107/api/computer-stock').then(res => {
-      console.log("computers",res)
+      console.log("computers", res)
       setComputerArr(res.data)
     }).catch(err => {
       console.log(err)
@@ -32,7 +32,7 @@ export default function BorrowForm() {
 
     axios.get('https://localhost:7107/api/purpose').then(res => {
       console.log(res)
-      setComputerArr(res.data)
+      setPurposeArr(res.data)
     }).catch(err => {
       console.log(err)
     })
@@ -60,7 +60,7 @@ export default function BorrowForm() {
           values: BorrowDto,
           { setSubmitting }: FormikHelpers<BorrowDto>
         ) => {
-
+          
           axios.post('https://localhost:7107/api/borrow', values)
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
@@ -131,15 +131,16 @@ export default function BorrowForm() {
                   console.log("purpose", v)
                 }}
                 getOptionLabel={(options) => options.purpose}
-                sx={{ width: 240, position: 'absolute', left: '51%', top: '30%' }}
+                sx={{ width: 240, position: 'absolute', left: '51%', top: '50%' }}
                 options={purposeArr}
-                renderInput={(params) => <TextField name='purpose' {...params} label="User" />}
+                renderInput={(params) => <TextField name='purpose' {...params} label="Purpose" />}
               />
+
 
               <TextField
                 onChange={handleChange}
                 name='comment'
-                sx={{ position: 'absolute', left: '50%', top: '50%' }}
+                sx={{ position: 'absolute', left: '51%', top: '60%' }}
                 required
                 multiline
                 rows={5}
@@ -148,7 +149,7 @@ export default function BorrowForm() {
                 label="Comment"
               />
             </Box>
-            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '80%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
       </Formik>
