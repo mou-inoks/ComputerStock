@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import Autocomplete from '@mui/material/Autocomplete'
-import { ComputerDto, ComputerTypeDto, ProcessorDto, StateDto } from '../Dtos'
+import { ProcessorDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 

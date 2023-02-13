@@ -7,7 +7,7 @@ export default function CreateComputerStateScreen() {
   return (
     <div>
       <header >
-        <img src={require('../../imgs/logo.png')} />
+        <img alt='logo' src={require('../../imgs/logo.png')} />
         <Navbar />
       </header>
       <div id='accordion'>

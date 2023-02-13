@@ -4,36 +4,21 @@ import { useEffect, useState } from 'react';
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { BorrowDto, UserDto } from '../Dtos';
-import EditUserForm from '../Users/EditUsersForm';
+import { BorrowDto } from '../Dtos';
 import EditBorrowForm from './EditBorrow';
 import moment from 'moment';
 
-export type BorrowListProps = {
-  stillInBorrow: boolean
-}
 
-const BorrowList = (props: BorrowListProps) => {
+
+const BorrowList = () => {
 
   const [borrow, setBorrow] = useState<Array<BorrowDto>>([])
 
   const [open, setOpen] = useState(false);
 
   const [tempBorrow, setTempBorrow] = useState<BorrowDto>();
-
-
-  const Listfiltered = borrow.filter((e) => {
-    if (props.stillInBorrow) {
-      if (e.toDate == null) {
-        return e
-      }
-      else return null
-    }
-    else return borrow
-  })
 
   const GetAllStates = () => {
     axios.get('https://localhost:7107/api/borrow').then(res => {
@@ -89,7 +74,7 @@ const BorrowList = (props: BorrowListProps) => {
           <th className='header__item'>Comment</th>
         </tr>
         <tr>
-          {Listfiltered.map((borrow) => {
+          {borrow.map((borrow) => {
             return (
               <>
                 <div className='table-row'>

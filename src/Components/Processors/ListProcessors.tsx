@@ -1,14 +1,12 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { ComputerDto, ProcessorDto } from '../Dtos'
+import { ProcessorDto } from '../Dtos'
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import EditComputerForm from '../Computers/EditComputerForm';
 import EditProcessorForm from './EditProcessorForm';
 
 const ListProcessors = () => {

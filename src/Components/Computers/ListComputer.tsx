@@ -5,17 +5,13 @@ import { ComputerDto } from '../Dtos'
 import '../../css/TableCss.css'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import EditComputerForm from './EditComputerForm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DetailsComputer from './DetailsComputer';
-
-export type ListComputersProps = {
-  isOnlyFreeChecked: boolean
-}
-const ListComputers = (props: ListComputersProps) => {
+ 
+const ListComputers = () => {
 
   const [computers, setComputers] = useState<Array<ComputerDto>>([])
 

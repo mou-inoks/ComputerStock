@@ -10,7 +10,7 @@ const ListComputerStateScreen = () => {
  <div>
  <header className="App-header">
    <Navbar />
-   <img src={require('../../imgs/logo.png')} />
+   <img  alt='logo' src={require('../../imgs/logo.png')} />
   </header>
   <div id='accordion'>
    <AccordionMenu />

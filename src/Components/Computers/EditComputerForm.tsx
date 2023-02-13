@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { ComputerDto, ComputerTypeDto, ProcessorDto, PurposeDto, StateDto } from '../Dtos'
+import { ComputerDto, ComputerTypeDto, ProcessorDto, StateDto } from '../Dtos'
 import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 
@@ -17,9 +17,6 @@ const EditComputerForm = (value: EditComputerProps) => {
   const [typeArr, setTypeArr] = useState<ComputerTypeDto[]>([])
 
   const [processorArr, setProcessorArr] = useState<ProcessorDto[]>([])
-
-
-  
 
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/computer-state').then(res => {

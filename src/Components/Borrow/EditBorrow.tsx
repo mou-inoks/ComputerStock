@@ -54,7 +54,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
 
  const computerArrFiltered = computersArr.filter((e) => {
   console.log('currentComputer',e)
-  if (e.state?.state == "In Stock") {
+  if (e.state?.state === "In Stock") {
    return e
   }
   else return null
@@ -63,10 +63,6 @@ const EditBorrowForm = (props: BorrowPorps) => {
  useEffect(() => {
   FetchFeedAllArrays()
  }, [])
-
- const SubmitNewState = (computer: ComputerDto) => {
-  axios.post('https://localhost:7107/api/computer-stock/update', computer).then(() => alert("Borrow Sucessfully modified"))
- }
 
  return (<div>
   <Formik<BorrowDto>
