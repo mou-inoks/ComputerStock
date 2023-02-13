@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
 import { BorrowDto, ComputerDto, UserDto } from '../Dtos'
-import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
+import { DatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -104,14 +104,7 @@ export default function BorrowForm() {
                     inputFormat="DD/MM/YYYY"
                     onChange={(e) => setFieldValue('fromDate', e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
-                  />
-
-                  <DesktopDatePicker
-                    label="To Date"
-                    value={values.toDate}
-                    inputFormat="DD/MM/YYYY"
-                    onChange={(e) => setFieldValue('toDate', e ?? new Date())}
-                    renderInput={(params) => <TextField {...params} />}
+                    maxDate={new Date()}
                   />
                 </LocalizationProvider>
               </Box>
