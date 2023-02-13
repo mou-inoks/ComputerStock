@@ -42,7 +42,7 @@ export default function BorrowForm() {
         initialValues={{
           id: 0,
           fromDate: new Date(),
-          toDate: new Date(),
+          toDate: null,
           user: null,
           computer: null,
           comment: ''

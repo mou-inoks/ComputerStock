@@ -34,55 +34,31 @@ export default function AccordionMenu() {
      </ListItemButton>
 
     </AccordionDetails>
-
-
-    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
-     <AccordionSummary
-      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-     >
-      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Processors</Typography>
-     </AccordionSummary>
-     <AccordionDetails>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-processor'> New Processor</Link>
-      </ListItemButton>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-processors'> List Processors</Link>
-      </ListItemButton>
-
-     </AccordionDetails>
-    </Accordion>
-
-
-    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
-     <AccordionSummary
-      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-     >
-      <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> State</Typography>
-     </AccordionSummary>
-     <AccordionDetails>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-state'> New computer state</Link>
-      </ListItemButton>
-
-      <ListItemButton sx={{ textAlign: 'center' }}>
-       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-       <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-states'> List states </Link>
-      </ListItemButton>
-
-     </AccordionDetails>
-    </Accordion>
    </Accordion>
+
+   <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
+    <AccordionSummary
+     expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
+     aria-controls="panel1a-content"
+     id="panel1a-header"
+    >
+     <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Borrow</Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+
+     <ListItemButton sx={{ textAlign: 'center' }}>
+      <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-borrow'> New Borrow </Link>
+     </ListItemButton>
+
+     <ListItemButton sx={{ textAlign: 'center' }}>
+      <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-borrow'> List Borrow</Link>
+     </ListItemButton>
+
+    </AccordionDetails>
+   </Accordion>
+
 
 
    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
@@ -108,28 +84,30 @@ export default function AccordionMenu() {
     </AccordionDetails>
    </Accordion>
 
+
    <Accordion defaultExpanded={false} sx={{ backgroundColor: '#3d3d3d', width: '100%' }}>
     <AccordionSummary
      expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
      aria-controls="panel1a-content"
      id="panel1a-header"
     >
-     <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Borrow</Typography>
+     <Typography sx={{ color: '#fff' }}><FormatListBulletedIcon sx={{ color: '#bd5457', height: '20px' }} /> Processors</Typography>
     </AccordionSummary>
     <AccordionDetails>
 
      <ListItemButton sx={{ textAlign: 'center' }}>
       <AddBoxIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-borrow'> New Borrow </Link>
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/create-processor'> New Processor</Link>
      </ListItemButton>
 
      <ListItemButton sx={{ textAlign: 'center' }}>
       <ListAltIcon sx={{ color: '#bd5457', paddingRight: 1 }} />
-      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-borrow'> List Borrow</Link>
+      <Link style={{ textDecoration: 'none', color: 'white' }} to='/list-processors'> List Processors</Link>
      </ListItemButton>
 
     </AccordionDetails>
    </Accordion>
+
 
 
   </div>

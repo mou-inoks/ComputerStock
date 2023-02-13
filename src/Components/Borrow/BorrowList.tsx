@@ -71,6 +71,7 @@ const BorrowList = () => {
           <th className='header__item'>From Date</th>
           <th className='header__item'>To Date</th>
           <th className='header__item'>Comment</th>
+          <th className='header__item'>Return</th>
         </tr>
         <tr>
           {borrow.map((borrow) => {
@@ -105,6 +106,11 @@ const BorrowList = () => {
                   <td className='table-data'>{moment(borrow.fromDate).format('MMM Do YY')}</td>
                   <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
                   <td className='table-data'>{borrow.comment}</td>
+                  <td className='table-data'>
+                    <button>
+                      End Borrow
+                    </button>
+                  </td>
                 </div>
 
               </>

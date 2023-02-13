@@ -15,15 +15,16 @@ const CreateComputerForm = () => {
   const [processorArr, setProcessorArr] = useState<ProcessorDto[]>([])
 
   const FetchFeedAllArrays = () => {
+    
     axios.get('https://localhost:7107/api/computer-state').then(res => {
-      console.log(res)
+      console.log("state", res)
       setStateArr(res.data)
     }).catch(err => {
       console.log(err)
     })
 
     axios.get('https://localhost:7107/api/computer-type').then(res => {
-      console.log(res)
+      console.log("typeArr", res)
       setTypeArr(res.data)
     }).catch(err => {
       console.log(err)
