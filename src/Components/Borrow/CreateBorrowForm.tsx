@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import Autocomplete from '@mui/material/Autocomplete'
-import { BorrowDto, ComputerDto, PurposeDto, UserDto } from '../Dtos'
+import { BorrowDto, ComputerDto, UserDto } from '../Dtos'
 import { DatePicker, DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,7 +13,6 @@ export default function BorrowForm() {
   const [userArr, setUserArr] = useState<UserDto[]>([])
 
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
-  const [purposeArr, setPurposeArr] = useState<PurposeDto[]>([])
 
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
@@ -26,13 +25,6 @@ export default function BorrowForm() {
     axios.get('https://localhost:7107/api/computer-stock').then(res => {
       console.log("computers", res)
       setComputerArr(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('https://localhost:7107/api/purpose').then(res => {
-      console.log(res)
-      setPurposeArr(res.data)
     }).catch(err => {
       console.log(err)
     })
@@ -53,8 +45,7 @@ export default function BorrowForm() {
           toDate: new Date(),
           user: null,
           computer: null,
-          comment: '',
-          purpose: null
+          comment: ''
         }}
         onSubmit={(
           values: BorrowDto,
@@ -124,18 +115,6 @@ export default function BorrowForm() {
                   />
                 </LocalizationProvider>
               </Box>
-
-              <Autocomplete
-                onChange={(e, v) => {
-                  values.purpose = v
-                  console.log("purpose", v)
-                }}
-                getOptionLabel={(options) => options.purpose}
-                sx={{ width: 240, position: 'absolute', left: '51%', top: '50%' }}
-                options={purposeArr}
-                renderInput={(params) => <TextField name='purpose' {...params} label="Purpose" />}
-              />
-
 
               <TextField
                 onChange={handleChange}

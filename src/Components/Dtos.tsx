@@ -12,10 +12,6 @@ export interface ProcessorDto{
  vitesse: string
 }
 
-export interface PurposeDto{
- id: number, 
- purpose: string, 
-}
 
 export interface BorrowDto {
  id: number,
@@ -24,7 +20,6 @@ export interface BorrowDto {
  user: UserDto | null, 
  computer: ComputerDto | null
  comment: string, 
- purpose: PurposeDto | null
 }
 
 export interface StateDto{
