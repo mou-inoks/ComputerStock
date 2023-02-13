@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 
 export interface ComputerTypeDto {
@@ -12,6 +11,22 @@ export interface ProcessorDto{
  niveau: string, 
  vitesse: string
 }
+
+export interface PurposeDto{
+ id: number, 
+ purpose: string, 
+}
+
+export interface BorrowDto {
+ id: number,
+ fromDate: Date, 
+ toDate: Date | null,
+ user: UserDto | null, 
+ computer: ComputerDto | null
+ comment: string, 
+ purpose: PurposeDto | null
+}
+
 export interface StateDto{
  id: number,  
  state: string
@@ -21,13 +36,7 @@ export interface UserDto{
  id: number,
  name: string
 }
-export interface BorrowDto {
- id: number,
- fromDate: Date, 
- toDate: Date | null,
- user: UserDto | null, 
- computer: ComputerDto | null
-}
+
 
 export interface ComputerDto {
  id: number,
@@ -36,8 +45,7 @@ export interface ComputerDto {
  brand: string, 
  processor: ProcessorDto | null, 
  ram: number, 
- state: StateDto | null, 
- comment: string
+ state: StateDto | null
 }
 
 

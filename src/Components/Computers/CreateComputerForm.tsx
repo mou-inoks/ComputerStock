@@ -54,7 +54,6 @@ const CreateComputerForm = () => {
           processor: null,
           ram: 0,
           state: null,
-          comment: ''
         }}
         onSubmit={(
           values: ComputerDto,
@@ -68,7 +67,6 @@ const CreateComputerForm = () => {
             processor: values.processor,
             ram: values.ram,
             state: values.state,
-            comment: values.comment
           })
             .then(function (response) {
               alert('A new computer as been added sucessfully ')
@@ -144,17 +142,6 @@ const CreateComputerForm = () => {
                 sx={{ width: 240, position: 'absolute', left: '58%', top: '40%' }}
                 options={stateArr}
                 renderInput={(params) => <TextField {...params} name='state' label="State" />}
-              />
-              <TextField
-                onChange={handleChange}
-                name='comment'
-                sx={{ position: 'absolute', left: '50%', top: '50%' }}
-                required
-                multiline
-                rows={5}
-                maxRows={5}
-                id="comment"
-                label="Comment"
               />
 
             </Box>

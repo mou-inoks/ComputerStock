@@ -58,7 +58,6 @@ const ListState = () => {
       <tbody>
         <tr className='table-header'>
           <th className='header__item'>
-            <a href='create-state'><AddCircleIcon /></a>
             Action
           </th>
           <th className='header__item'>State</th>

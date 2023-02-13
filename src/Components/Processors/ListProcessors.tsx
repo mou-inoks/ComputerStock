@@ -58,10 +58,7 @@ const ListProcessors = () => {
   <table className='table'>
    <tbody>
     <tr className='table-header'>
-     <th className='header__item'>
-      <a href='create-processor'><AddCircleIcon /></a>
-      Action
-     </th>
+     <th className='header__item'>Action</th>
      <th className='header__item'>Name</th>
      <th className='header__item'>Speed</th>
      <th className='header__item'>Level</th>

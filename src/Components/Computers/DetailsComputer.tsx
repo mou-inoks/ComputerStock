@@ -17,7 +17,6 @@ const DetailsComputer = (value: DetailsComputerProps) => {
    <div className='details'>Brand: {value.computer.brand}</div>
    <div className='details'>Ram: {value.computer.ram}Go</div>
    <div className='details'>State: {value.computer.state?.state}</div>
-   <div className='details'>Comment: {value.computer.comment}</div>
   </Box>
 
 
