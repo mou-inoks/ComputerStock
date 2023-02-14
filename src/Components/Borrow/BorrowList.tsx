@@ -107,7 +107,19 @@ const BorrowList = () => {
                   <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
                   <td className='table-data'>{borrow.comment}</td>
                   <td className='table-data'>
-                    <button>
+                    <button onClick={() => {
+                      
+                      borrow.toDate = new Date()
+
+                      axios.post('https://localhost:7107/api/borrow/return', borrow)
+                      .then(function (response) {
+                        GetAllStates()
+                        console.log(response)
+                      })
+                      .catch(function (error) {
+                        console.log(error)
+                      });
+                    }}>
                       End Borrow
                     </button>
                   </td>
