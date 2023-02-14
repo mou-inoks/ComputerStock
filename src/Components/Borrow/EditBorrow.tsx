@@ -46,7 +46,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
  console.log(computersArr)
 
  const computerArrFiltered = computersArr.filter((e) => {
-  console.log('currentComputer',e)
+  console.log('currentComputer', e)
   if (e.state?.state === "In Stock") {
    return e
   }
@@ -65,7 +65,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
     user: props.borrow.user,
     fromDate: props.borrow.fromDate,
     toDate: props.borrow.toDate,
-    comment: props.borrow.comment, 
+    comment: props.borrow.comment,
    }}
    onSubmit={(
     values: BorrowDto,
@@ -74,10 +74,10 @@ const EditBorrowForm = (props: BorrowPorps) => {
     /* Ajouter method de modification d'un élément*/
     console.log(values)
     axios.post('https://localhost:7107/api/borrow/update', values)
-    .then(() => alert("Borrow Sucessfully modified"))
+     .then(() => alert("Borrow Sucessfully modified"))
    }}
   >
-   {({ values, setFieldValue }) => {
+   {({ values, setFieldValue, handleChange }) => {
     return <Form>
      <Box
       component="form"
@@ -91,7 +91,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
        onChange={(e, v) => values.computer = v}
        defaultValue={values.computer}
        getOptionLabel={(options) => options.name}
-       sx={{ width: 240, position: 'absolute', left: '30%', top: '20%' }}
+       sx={{ width: 240, position: 'absolute', top: '20%' }}
        options={computerArrFiltered}
        renderInput={(params) => <TextField name='Name' {...params} label="Computers Available" />}
       />
@@ -100,7 +100,7 @@ const EditBorrowForm = (props: BorrowPorps) => {
        onChange={(e, v) => values.user = v}
        getOptionLabel={(options) => options.name}
        defaultValue={values.user}
-       sx={{ width: 240, position: 'absolute', left: '30%', top: '35%' }}
+       sx={{ width: 240, position: 'absolute', top: '35%' }}
        options={userArr}
        renderInput={(params) => <TextField name='Name' {...params} label="User" />}
       />
@@ -109,34 +109,48 @@ const EditBorrowForm = (props: BorrowPorps) => {
        onChange={(e, v) => values.computer!.state = v}
        getOptionLabel={(options) => options.state}
        defaultValue={values.computer?.state}
-       sx={{ width: 240, position: 'absolute', left: '30%', top: '50%' }}
+       sx={{ width: 240, position: 'absolute', top: '50%' }}
        options={stateArr}
        renderInput={(params) => <TextField {...params} name='state' label="Computer state" />}
       />
+      <Box component='div' sx={{position: 'absolute', right: '50%'}}>
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DesktopDatePicker
+         label="From Date"
+         value={values.fromDate}
+         inputFormat="DD/MM/YYYY"
+         className='datePickerInEditForm'
+         onChange={(e) => setFieldValue('fromDate', e ?? new Date())}
+         renderInput={(params) => <TextField {...params} />}
+        />
 
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-       <DesktopDatePicker
-        label="From Date"
-        value={values.fromDate}
-        inputFormat="DD/MM/YYYY"
-        className='datePickerInEditForm'
-        onChange={(e) => setFieldValue('fromDate',e ?? new Date())}
-        renderInput={(params) => <TextField {...params} />}
-       />
+        <DesktopDatePicker
+         label="To Date"
+         value={values.toDate}
+         inputFormat="DD/MM/YYYY"
+         className='datePickerInEditForm'
+         onChange={(e) => setFieldValue('toDate', e ?? new Date())}
+         renderInput={(params) => <TextField {...params} />}
+        />
+       </LocalizationProvider>
+      </Box>
 
-       <DesktopDatePicker
-        label="To Date"
-        value={values.toDate}
-        inputFormat="DD/MM/YYYY"
-        className='datePickerInEditForm'
-        onChange={(e) => setFieldValue('toDate', e ?? new Date())}
-        renderInput={(params) => <TextField {...params} />}
-       />
-      </LocalizationProvider>
+
+      <TextField
+       onChange={handleChange}
+       name='comment'
+       sx={{ position: 'absolute', left: '51%', top: '20%' }}
+       required
+       multiline
+       rows={12}
+       maxRows={9}
+       id="comment"
+       label="Comment"
+      />
 
 
      </Box>
-     <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '40%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
+     <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '65%', top: '85%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Edit</Button>
     </Form>
    }}
   </Formik>

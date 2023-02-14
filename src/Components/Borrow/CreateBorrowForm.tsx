@@ -15,7 +15,7 @@ export default function BorrowForm() {
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
   const listFiltered = computersArr.filter((e) => {
-    if(e.state?.state == "In Stock")
+    if(e.state?.state === "In Stock")
       return e
     else return null
   })

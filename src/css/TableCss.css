@@ -33,6 +33,7 @@ a:hover{
  left: 35%;
  top: 30%;
  border:1px solid #333232;
+
 }
 
 .table-header {
@@ -40,6 +41,7 @@ a:hover{
  width: 100%;
  background: rgb(104, 100, 100);
  padding: 7px 0;
+ 
 }
 
 .table-row {
@@ -47,6 +49,7 @@ a:hover{
  width: 100%;
  padding: 18px 0;
  color: white;
+
 }
 
 .table-row:nth-of-type(odd) {
