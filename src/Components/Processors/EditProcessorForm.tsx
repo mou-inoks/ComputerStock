@@ -6,8 +6,7 @@ import axios from 'axios'
 
 
 const EditProcessorForm = (processor: ProcessorDto) => {
-
-
+ 
  return (<div>
   <Formik<ProcessorDto>
    initialValues={{
