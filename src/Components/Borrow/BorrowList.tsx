@@ -36,6 +36,12 @@ const BorrowList = () => {
     GetAllStates()
   };
 
+  const HandleButtonDisable = (borrow: BorrowDto) => {
+    if (borrow.toDate == null)
+      return false
+    else return true
+  }
+
   useEffect(() => {
     GetAllStates()
   }, [])
@@ -106,22 +112,24 @@ const BorrowList = () => {
                   <td className='table-data'>{moment(borrow.fromDate).format('MMM Do YY')}</td>
                   <td className='table-data'>{AfficherDate(borrow.toDate)}</td>
                   <td className='table-data'>{borrow.comment}</td>
-                  <td className='table-data'>
-                    <button onClick={() => {
-                      
-                      borrow.toDate = new Date()
 
-                      axios.post('https://localhost:7107/api/borrow/return', borrow)
-                      .then(function (response) {
-                        GetAllStates()
-                        console.log(response)
-                      })
-                      .catch(function (error) {
-                        console.log(error)
-                      });
-                    }}>
+                  <td className='table-data'>
+                    <button disabled={HandleButtonDisable(borrow)}
+                      onClick={() => {
+
+                        borrow.toDate = new Date()
+                        axios.post('https://localhost:7107/api/borrow/return', borrow)
+                          .then(function (response) {
+                            GetAllStates()
+                            console.log(response)
+                          })
+                          .catch(function (error) {
+                            console.log(error)
+                          });
+                      }}>
                       End Borrow
                     </button>
+
                   </td>
                 </div>
 
