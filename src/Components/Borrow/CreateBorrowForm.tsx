@@ -15,7 +15,7 @@ export default function BorrowForm() {
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
   const listFiltered = computersArr.filter((e) => {
-    if(e.state?.state === "In Stock")
+    if (e.state?.state === "In Stock")
       return e
     else return null
   })
@@ -56,7 +56,7 @@ export default function BorrowForm() {
         onSubmit={(
           values: BorrowDto,
         ) => {
-          
+
           axios.post('https://localhost:7107/api/borrow', values)
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
@@ -100,7 +100,7 @@ export default function BorrowForm() {
                 options={userArr}
                 renderInput={(params) => <TextField name='name' {...params} label="User" />}
               />
-              <Box sx={{position: 'absolute', left: '980px', bottom: '100px'}} className="datePicker" component="div">
+              <Box className="datePicker" component="div">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="From Date"
@@ -109,6 +109,15 @@ export default function BorrowForm() {
                     onChange={(e) => setFieldValue('fromDate', e ?? new Date())}
                     renderInput={(params) => <TextField {...params} />}
                     maxDate={new Date()}
+                  />
+
+                  <DatePicker
+                    label="To Date"
+                    value={values.toDate}
+                    inputFormat="DD/MM/YYYY"
+                    className='datePickerInEditForm'
+                    onChange={(e) => setFieldValue('toDate', e ?? new Date())}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>

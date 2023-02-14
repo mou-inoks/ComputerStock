@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import EditComputerForm from './EditComputerForm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import DetailsComputer from './DetailsComputer';
  
 const ListComputers = () => {
 
@@ -100,20 +99,6 @@ const ListComputers = () => {
                         GetAllComputers()
                       })
                     }}><DeleteIcon /></button>
-                    <button className='actions' onClick={() => handleOpenDetails(computer)}>
-                      <RemoveRedEyeIcon />
-                    </button>
-                    <Modal
-                      open={detailsOpen}
-                      onClose={handleClose}
-                      aria-labelledby="parent-modal-title"
-                      aria-describedby="parent-modal-description"
-                    >
-                      <Box sx={{ ...modalStyle, width: 600, height: 500, backgroundColor: '#4e4e4e', color: 'white' }}>
-                        <h1 style={{ position: 'relative', left: '30%' }}>Details {tempComputer?.name}</h1>
-                        <DetailsComputer computer={tempComputer!} />
-                      </Box>
-                    </Modal>
                   </td>
                   <td className='table-data'>{computer.name}</td>
                   <td className='table-data'>{computer.type?.type}</td>
