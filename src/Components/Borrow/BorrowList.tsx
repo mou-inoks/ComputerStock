@@ -9,6 +9,7 @@ import Modal from '@mui/material/Modal';
 import { BorrowDto } from '../Dtos';
 import EditBorrowForm from './EditBorrow';
 import moment from 'moment';
+import Button from '@mui/material/Button';
 
 
 
@@ -114,7 +115,7 @@ const BorrowList = () => {
                   <td className='table-data'>{borrow.comment}</td>
 
                   <td className='table-data'>
-                    <button disabled={HandleButtonDisable(borrow)}
+                    <Button variant="text" disabled={HandleButtonDisable(borrow)}
                       onClick={() => {
 
                         borrow.toDate = new Date()
@@ -128,8 +129,7 @@ const BorrowList = () => {
                           });
                       }}>
                       End Borrow
-                    </button>
-
+                    </Button>
                   </td>
                 </div>
 
