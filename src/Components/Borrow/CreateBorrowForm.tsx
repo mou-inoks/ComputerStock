@@ -55,13 +55,11 @@ export default function BorrowForm() {
         }}
         onSubmit={(
           values: BorrowDto,
-          { setSubmitting }: FormikHelpers<BorrowDto>
         ) => {
           
           axios.post('https://localhost:7107/api/borrow', values)
             .then(function (response) {
               alert('A new borrow as been added sucessfully')
-              setSubmitting(true)
               console.log(response)
             })
             .catch(function (error) {

@@ -18,10 +18,8 @@ const CreateProcessorForm = () => {
         }}
         onSubmit={(
           values: ProcessorDto,
-          { setSubmitting }: FormikHelpers<ProcessorDto>
         ) => {
          axios.post('https://localhost:7107/api/processor', values).then(res => {
-          setSubmitting(true)
           alert('Processor created sucessfully ')
          })
         }}

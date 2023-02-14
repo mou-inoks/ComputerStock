@@ -69,7 +69,6 @@ const EditBorrowForm = (props: BorrowPorps) => {
    }}
    onSubmit={(
     values: BorrowDto,
-    { setSubmitting }: FormikHelpers<BorrowDto>
    ) => {
     /* Ajouter method de modification d'un élément*/
     console.log(values)

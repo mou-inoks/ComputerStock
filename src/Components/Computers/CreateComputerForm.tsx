@@ -58,7 +58,6 @@ const CreateComputerForm = () => {
         }}
         onSubmit={(
           values: ComputerDto,
-          { setSubmitting }: FormikHelpers<ComputerDto>
         ) => {
           console.log(values)
           axios.post('https://localhost:7107/api/computer-stock', {
@@ -71,7 +70,6 @@ const CreateComputerForm = () => {
           })
             .then(function (response) {
               alert('A new computer as been added sucessfully ')
-              setSubmitting(true)
               console.log(response)
             })
             .catch(function (error) {

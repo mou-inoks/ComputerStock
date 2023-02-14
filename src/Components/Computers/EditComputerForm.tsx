@@ -58,7 +58,6 @@ const EditComputerForm = (value: EditComputerProps) => {
       }}
       onSubmit={(
         values: ComputerDto,
-        { setSubmitting }: FormikHelpers<ComputerDto>
       ) => {
         /* Ajouter method de modification d'un élément*/
         axios.post('https://localhost:7107/api/computer-stock/update', values).then(() => alert("Computer Sucessfully modified"))
