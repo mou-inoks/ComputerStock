@@ -14,6 +14,12 @@ export default function BorrowForm() {
 
   const [computersArr, setComputerArr] = useState<ComputerDto[]>([])
 
+  const listFiltered = computersArr.filter((e) => {
+    if(e.state?.state == "In Stock")
+      return e
+    else return null
+  })
+
   const FetchFeedAllArrays = () => {
     axios.get('https://localhost:7107/api/user').then(res => {
       setUserArr(res.data)
@@ -82,7 +88,7 @@ export default function BorrowForm() {
                 }}
                 getOptionLabel={(options) => options.name}
                 sx={{ width: 240, position: 'absolute', left: '51%', top: '20%' }}
-                options={computersArr}
+                options={listFiltered}
                 renderInput={(params) => <TextField name='name' {...params} label="Computers Available" />}
               />
 
@@ -96,7 +102,7 @@ export default function BorrowForm() {
                 options={userArr}
                 renderInput={(params) => <TextField name='name' {...params} label="User" />}
               />
-              <Box className="datePicker" component="div">
+              <Box sx={{position: 'absolute', left: '980px', bottom: '100px'}} className="datePicker" component="div">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="From Date"
@@ -112,7 +118,7 @@ export default function BorrowForm() {
               <TextField
                 onChange={handleChange}
                 name='comment'
-                sx={{ position: 'absolute', left: '51%', top: '60%' }}
+                sx={{ position: 'absolute', left: '51%', top: '50%' }}
                 required
                 multiline
                 rows={5}
@@ -121,7 +127,7 @@ export default function BorrowForm() {
                 label="Comment"
               />
             </Box>
-            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '80%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
+            <Button type='submit' sx={{ backgroundColor: '#bd5457', position: 'absolute', left: '55.5%', top: '70%', ":hover": { backgroundColor: '#874143' } }} variant='contained'>Add</Button>
           </Form>
         }}
       </Formik>
